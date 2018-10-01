@@ -1,11 +1,11 @@
 # Table of Contents
 
 * Brief
-    * Audience
-    * Problem
-    * Solution
-    * Unique Value Proposition
-    * Pitch
+    * [Audience](#audience)
+    * [Problem](#problem)
+    * [Solution](#solution)
+    * [Unique Value Proposition](#unique-value-proposition)
+    * [Pitch](#project-pitch)
 
 # Brief
 
