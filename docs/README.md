@@ -4,7 +4,7 @@
     * [Audience](https://github.com/CordellRadke/capstone/blob/dev/docs/brief.md#audience)
     * [Problem](https://github.com/CordellRadke/capstone/blob/dev/docs/brief.md#problem)
     * [Solution](https://github.com/CordellRadke/capstone/blob/dev/docs/brief.md#solution)
-    * [Unique Value Proposition](https://github.com/CordellRadke/capstone/blob/dev/docs/brief.md#unique-value-preposition)
+    * [Unique Value Proposition](https://github.com/CordellRadke/capstone/blob/dev/docs/brief.md#unique-value-proposition)
     * [Pitch](https://github.com/CordellRadke/capstone/blob/dev/docs/brief.md#project-pitch)
 * [Spec](https://github.com/CordellRadke/capstone/blob/dev/docs/spec.md)
     * [Feature Definitions](https://github.com/CordellRadke/capstone/blob/dev/docs/spec.md#feature-definitions)
