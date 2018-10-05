@@ -65,11 +65,11 @@
    - Oil Change (Add Record) -> Form: approx Date & Mileage (Add) -> Dashboard
    - Tire Rotation (Add Record) -> Form: approx Date & Mileage (Add) -> Dashboard   
    Bottom Navigation
-      - history -> historyView -> Add Record -> Form: Serviced Category(oilchange, tire rotation, etc.), Date, 
-        Mileage (Add Record)-> (updated)historyView 
+      - history -> historyView -> Add Record -> Form: Serviced Category(oilchange, tire rotation, etc.), Date, Mileage(Add Record)-> (updated)historyView 
       - costs -> costsView -> Cost and Labor diagram of estimates -> Dashboard
       - videos -> videoView -> List of tutorial Videos on basic car maintenance <-(back button) -> Dashboard
-   (coming soon) - find shop 
+         
+         (coming soon) - find shop 
   ### Browser Support
  
   Currently, App will be subjected to portrait mode for Android and IOS. Browser support will be added in later versions.
