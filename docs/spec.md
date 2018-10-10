@@ -78,15 +78,15 @@
  
    ### Technical Requirements
    - AsyncStorage for storing vehicle and user data
+   - Android Studio (Emulator)
    - Local Web Server
    - [Expo](https://docs.expo.io/versions/latest/distribution/building-standalone-apps)
    
    ### Programming Languages
    - [React Native](https://facebook.github.io/react-native/docs/getting-started)
-   - [CSS/SASS](https://sass-lang.com/)
    
    ### Integrations
-   - [Edmunds API](https://github.com/EdmundsAPI/sdk-javascript) for lists of makes, models, and styles
+   - [Vehicle API](https://vpic.nhtsa.dot.gov/api/) for lists of makes, models, and styles
    
    ### Deployment Workflow
    
