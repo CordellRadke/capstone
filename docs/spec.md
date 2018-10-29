@@ -18,10 +18,9 @@
 [Filter of Github Features](https://github.com/CordellRadke/capstone/issues)
   * Splash Screen
   * Initial Login/Sign-Up Screen
-  * Garage for Vehicles (Add, View, or Delete)
-  * Dashboard main hub for History/Costs/Tutorials
+  * Garage view for Vehicles (Add, View, or Delete)
+  * Dashboard view main hub for Vehicle information
   * History view for List of user inputted reports (oil change, tire change, light bulb replacement, etc.)
-  * Costs view for list of Cost Estimates (Average estimates for general vehicles inputted by dev)
   * Tutorials view for tutorials on car maintenance (Tutorials on how to change a tire, oil change, etc.)
   
 ## Sitemap
@@ -43,9 +42,9 @@
    - view -> Dashboard
    - delete -> (Updated)GARAGE
   ### Dashboard
-  User can view history, costs, or videos
+  User can view history, garage, or videos
    - history -> historyView
-   - costs -> costsView
+   - garage -> garageView
    - videos -> videoView
 ## Interface
   ### Information Architecture
@@ -77,16 +76,16 @@
  ## Infrastructure
  
    ### Technical Requirements
-   - AsyncStorage for storing vehicle and user data
+   - AsyncStorage for storing vehicle data
    - Android Studio (Emulator)
    - Local Web Server
-   - [Expo](https://docs.expo.io/versions/latest/distribution/building-standalone-apps)
+   - [Firebase](https://firebase.google.com/) for User data
    
    ### Programming Languages
    - [React Native](https://facebook.github.io/react-native/docs/getting-started)
    
    ### Integrations
-   - [Vehicle API](https://vpic.nhtsa.dot.gov/api/) for lists of makes, models, and styles
+   - [Vehicle API](http://www.carqueryapi.com/) for lists of makes, models, and styles
    
    ### Deployment Workflow
    
