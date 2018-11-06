@@ -53,8 +53,8 @@ export default class VehicleYearPicker extends Component {
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {
-                                    data.map((ele) => {
-                                        return (<Picker.Item label={ele.year.toString()} value={ele.year} />)
+                                    data.map((ele, key) => {
+                                        return (<Picker.Item label={ele.year.toString()} value={ele.year} key={key}/>)
                                     })
                                 }
                             </SmartPicker>
