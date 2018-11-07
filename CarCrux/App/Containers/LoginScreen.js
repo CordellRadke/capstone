@@ -63,8 +63,8 @@ class LoginScreen extends Component {
     }
 
     return (
-      <Button style={{ backgroundColor: '#757575', margin: 5 }} block onPress={this.onButtonPress.bind(this)}>
-        <Text>Log In</Text>
+      <Button style={{ backgroundColor: 'green', margin: 5 }} block onPress={this.onButtonPress.bind(this)}>
+        <Text style={{color: 'white'}}>LOGIN</Text>
       </Button>
     );
   }
@@ -72,7 +72,7 @@ class LoginScreen extends Component {
     return (
       <View>
         <ScrollView>
-          <Header style={{ shadowOpacity: 0, backgroundColor: 'transparent' }} >
+          <Header style={{ shadowOpacity: 0, backgroundColor: '#595478' }} >
             <Left>
               <Button transparent onPress={() => this.props.navigation.navigate('LaunchScreen')}>
                 <Icon name='arrow-back' />

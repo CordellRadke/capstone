@@ -114,8 +114,8 @@ class SignUpScreen extends Component {
         // }
 
         return (
-            <Button style={{ backgroundColor: '#757575', margin: 5 }} block bordered onPress={this.onButtonPress.bind(this)}>
-                <Text>Sign Up</Text>
+            <Button style={{ backgroundColor: 'green', margin: 5 }} block bordered onPress={this.onButtonPress.bind(this)}>
+                <Text style={{ color: 'white'}}>DONE</Text>
             </Button>
         );
     }
