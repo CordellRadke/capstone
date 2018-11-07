@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
-import { Image, ScrollView } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Left, Button, Thumbnail, Body } from 'native-base';
 import { Images } from '../Themes'
 const backgroundImage = require("../Images/Dash-Icon.png");
@@ -112,11 +112,12 @@ export default class HomeOverview extends Component {
                                 </ScrollView>
                                 :
                                 <Container>
-                                    <Content>
-                                        <Text>Opps it looks like you don't have any vehicles yet!</Text>
-                                        <Button transparent onPress={() => this.props.navigation.navigate('VehicleCreateScreen')} >
-                                            <Text>Go Make one!</Text>
+                                    <Content style={{ padding: 50}}>
+                                    <Text style={{fontSize:20, textAlign: 'center', marginTop: 200}}>Add Vehicle</Text>
+                                        <Button style={{marginTop:30, paddingTop: 50, paddingBottom: 50, marginLeft:100}} transparent onPress={() => this.props.navigation.navigate('VehicleCreateScreen')} >
+                                            <Icon style={{ fontSize:100  }} type="FontAwesome" name='plus-circle' />
                                         </Button>
+                                    
                                     </Content>
                                 </Container>
                             }
