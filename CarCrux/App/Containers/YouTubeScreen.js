@@ -15,7 +15,7 @@ import { Images } from '../Themes'
 
 // import styles from './Styles/VehicleCreateScreenStyle'
 
-class MaintHistory extends Component {
+class YouTubeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +38,7 @@ class MaintHistory extends Component {
             <Container>
                 <Content>
                
-                    <Text>Hi This is the Maintenance History Screen</Text>
+                    <Text>Hi This is the YouTube Screen</Text>
                 </Content>
             </Container>
 
@@ -58,5 +58,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MaintHistory)
-
+export default connect(mapStateToProps, mapDispatchToProps)(YouTubeScreen)

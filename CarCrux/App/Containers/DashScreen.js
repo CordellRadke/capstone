@@ -38,7 +38,7 @@ class MaintHistory extends Component {
             <Container>
                 <Content>
                
-                    <Text>Hi This is the Maintenance History Screen</Text>
+                    <Text>Hi This is the Dashboard Screen</Text>
                 </Content>
             </Container>
 
@@ -59,4 +59,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MaintHistory)
-
