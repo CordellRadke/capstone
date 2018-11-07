@@ -55,9 +55,9 @@ export default class vehicleTrimPicker extends Component {
     handleTrimPick(value) {
         this.state.trims.filter(ele => {
             ele.name === value ? this.setState({ trimWithId: ele }, () => {
-                console.log('bouts to call some redux')
+                console.log('call redux')
                 this.props.vehicleTrim(this.state.trimWithId)
-            }) : console.log('no match you suck')
+            }) : console.log('no match')
         })
 
     }
@@ -85,8 +85,8 @@ export default class vehicleTrimPicker extends Component {
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {
-                                    this.state.trims.map((ele) => {
-                                        return (<Picker.Item label={ele.name} value={ele.name} />)
+                                    this.state.trims.map((ele, key) => {
+                                        return (<Picker.Item label={ele.name} value={ele.name} key={key} />)
                                     })
                                 }
                             </SmartPicker>

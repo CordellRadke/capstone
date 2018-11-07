@@ -70,8 +70,8 @@ export default class VehicleModelPicker extends Component {
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {
-                                    this.state.models.map((ele) => {
-                                        return (<Picker.Item label={ele} value={ele} />)
+                                    this.state.models.map((ele, key) => {
+                                        return (<Picker.Item label={ele} value={ele} key={key} />)
                                     })
                                 }
                             </SmartPicker>
