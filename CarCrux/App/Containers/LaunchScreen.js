@@ -1,0 +1,146 @@
+import React, { Component } from 'react'
+import firebase from 'firebase'
+import { ScrollView, Text, Image, View, TextInput, ImageBackground } from 'react-native'
+import { Container, Header, Content, Form, Item, Input, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Images, ApplicationStyles } from '../Themes'
+import Spinner from '../Components/Spinner'
+import RootContainer from './RootContainer'
+import App from './App'
+import { connect } from 'react-redux'
+import { loginRequest, signupRequest } from '../Actions/auth-actions'
+
+import styles from './Styles/LaunchScreenStyles'
+
+class LaunchScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstTime: false,
+      user: {},
+    }
+    // this.goHomeIfUser = this.goHomeIfUser.bind(this);
+  }
+
+  // ********* Here we need to track if someone is logged in from previous user of our application so they don't need to log in every time ********* 
+  // *********  We use willRecieveRrops to avoid memory usage and infinite loops that componentDidUpdate() causes ********* 
+  // ********* We are doing this because the screen component is rendering BEFORE the firebase login promise is returned *********
+
+  componentWillReceiveProps(nextProps) {
+    // ********* Grab navigate to use later  ********* 
+    const { navigate } = this.props.navigation
+
+    // ********* If the length is null we can assume no user has been set yet *********
+    if (this.state.user.length === 0) {
+      // ********* Assigned nextProps(which is the returned promise from firebase) to this user object *********
+      // ********* Now this is basically recursion, next time this component recieves nextProps the user object.length will not be null *********
+      this.setState({
+        user: nextProps.user,
+      })
+      // user = nextProps.user;
+    }
+    // ********* Now we can assume we have logged in a user through the above steps and can automatically render the home screen! *********
+    // ********* Trigger the first time so anytime this componentReceivesProps, it doesn't trigger *********
+    if (this.state.user.length !== 0 && this.state.firstTime === false) {
+      this.setState({ firstTime: true })
+      navigate('HomeScreen')
+    }
+
+  }
+
+  // ********* The next many lines handles the login.. *********
+  state = {
+    loggedIn: false, email: '', username: '', password: '', error: '', loading: false
+  }
+  onButtonPress() {
+    const { email, password, username } = this.state;
+
+    this.setState({ error: '', loading: true });
+
+    this.props.signupRequest(email, password, username);
+
+  }
+
+  onLogoutPress() {
+
+    firebase.auth().signOut().then(function () {
+      console.log('Signed User out')
+    }).catch(function (error) {
+      console.log('Something went wrong');
+    });
+  }
+
+  onLoginFail() {
+    this.setState({ error: 'Authentication Failed', loading: false });
+    alert('Whoops, thats not the correct information!')
+  }
+
+  onLoginSuccess() {
+    this.setState({
+      email: '',
+      password: '',
+      loading: false,
+      username: '',
+      error: ''
+    });
+    alert('You got signed in!')
+  }
+
+
+
+  renderButton() {
+    if (this.state.loading) {
+      return <Spinner size="small" />;
+    }
+
+    return (
+      <Button block onPress={this.onButtonPress.bind(this)}>
+        <Text>Sign Up</Text>
+      </Button>
+    );
+  }
+
+
+
+  render() {
+    const { navigate } = this.props.navigation
+    return (
+      
+      
+        
+
+        
+        <ImageBackground source={Images.launchBackground} style={{width: '100%', height: '100%'}} resizeMode="stretch" >
+          <View style={styles.mainContainer}>
+            <Content>
+              <Text style={styles.catchPhrase}>Sign Up or Login!</Text>
+
+              <Button style={{ backgroundColor: '#595478', margin: 5 }} block onPress={() => navigate('SignUpScreen')} ><Text style={{ color: 'white', fontWeight: 'bold' }} >Sign Up</Text></Button>
+              <Button style={{ backgroundColor: '#595478', margin: 5 }} block onPress={() => navigate('LoginScreen')} ><Text style={{ color: 'white', fontWeight: 'bold' }}>Log In</Text></Button>
+
+
+            </Content>
+          </View>
+        </ImageBackground>
+         
+
+         
+     
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginRequest: (user) => dispatch(loginRequest(user)),
+    signupRequest: (email, password, username) => dispatch(signupRequest(email, password, username))
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchScreen)
