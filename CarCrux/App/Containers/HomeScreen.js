@@ -31,6 +31,7 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.setState({ garageActive: true })
     // this.state.user.length === 0 ? this.state.loading === true : this.state.loading === false
+    
   }
   componentWillReceiveProps(nextProps) {
     this.state.user.length === 0 ? this.setState({ user: nextProps.user, loading: true }) : undefined
@@ -153,12 +154,12 @@ class HomeScreen extends Component {
           {this.state.historyActive && <MaintHistory navigation={this.props.navigation} props={this.props.user} /> }
           {/* Show DashScreen from tab at bottom */}
           {this.state.dashActive && <DashScreen navigation={this.props.navigation} props={this.props.user} /> }
-          {/* Show YouTubeScreen from tab at bottom */}
-          {this.state.videoActive && <YouTubeScreen navigation={this.props.navigation} props={this.props.user} /> }
+          
 
         {/* FOOTER */}
-        
+       
         <Footer>
+       
           <FooterTab style={{backgroundColor:'#595478', tabActiveBgColor:'red'}}>
           <Button vertical onPress={() => this.onGaragePress()} active={this.state.garageActive}>
               <Icon name="home" />
@@ -172,12 +173,11 @@ class HomeScreen extends Component {
               <Icon type="FontAwesome" name="wrench" />
               <Text style={{color: 'white'}}>History</Text>
             </Button>
-            <Button vertical onPress={() => this.onVideoPress()} active={this.state.videoActive}>
-              <Icon type="FontAwesome" active name="play" />
-              <Text style={{color: 'white'}}>Videos</Text>
-            </Button>
+            
           </FooterTab>
+      
         </Footer>
+                  
         
       </View>
     )

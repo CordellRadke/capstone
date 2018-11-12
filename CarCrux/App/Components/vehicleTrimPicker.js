@@ -85,8 +85,8 @@ export default class vehicleTrimPicker extends Component {
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {
-                                    this.state.trims.map((ele) => {
-                                        return (<Picker.Item label={ele.name} value={ele.name} />)
+                                    this.state.trims.map((ele, key) => {
+                                        return (<Picker.Item label={ele.name} value={ele.name} key={key}/>)
                                     })
                                 }
                             </SmartPicker>

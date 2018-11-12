@@ -3,6 +3,7 @@ import Spinner from './Spinner'
 import { Image, ScrollView, View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Left, Button, Thumbnail, Body } from 'native-base';
 import { Images } from '../Themes'
+import AddVehicleButton from './Styles/AddVehicleButton';
 const backgroundImage = require("../Images/Dash-Icon.png");
 
 
@@ -93,9 +94,9 @@ export default class HomeOverview extends Component {
                                                 </CardItem>
                                                 <CardItem>
                                                     <Left>
-                                                        <Button transparent onPress={() => this.props.navigation.navigate('RepairScreen', { vehicle: ele })} textStyle={{ color: '#87838B' }}>
+                                                        <Button transparent onPress={() => this.props.navigation.navigate('YouTubeScreen', { vehicle: ele })} textStyle={{ color: '#87838B' }}>
                                                             <Icon name="build" />
-                                                            <Text>View Details</Text>
+                                                            <Text>Fix it Now!</Text>
                                                         </Button>
                                                     </Left>
 
@@ -114,7 +115,7 @@ export default class HomeOverview extends Component {
                                 <Container>
                                     <Content style={{ padding: 50}}>
                                     <Text style={{fontSize:20, textAlign: 'center', marginTop: 200}}>Add Vehicle</Text>
-                                        <Button style={{marginTop:30, paddingTop: 50, paddingBottom: 50, marginLeft:100}} transparent onPress={() => this.props.navigation.navigate('VehicleCreateScreen')} >
+                                        <Button style={AddVehicleButton.addVehicleButton} transparent onPress={() => this.props.navigation.navigate('VehicleCreateScreen')} >
                                             <Icon style={{ fontSize:100  }} type="FontAwesome" name='plus-circle' />
                                         </Button>
                                     

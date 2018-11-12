@@ -6,7 +6,7 @@ import HomeScreen from '../Containers/HomeScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
 import SettingsScreen from '../Containers/SettingsScreen'
 import VehicleCreateScreen from '../Containers/VehicleCreateScreen'
-import RepairScreen from '../Containers/RepairScreen'
+import YouTubeScreen from '../Containers/YouTubeScreen'
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
@@ -17,7 +17,7 @@ const PrimaryNav = StackNavigator({
   SignUpScreen: { screen: SignUpScreen },
   SettingsScreen: { screen: SettingsScreen },
   VehicleCreateScreen: { screen: VehicleCreateScreen },
-  RepairScreen: { screen: RepairScreen }
+  YouTubeScreen: { screen: YouTubeScreen }
 }, {
     // Default config for all screens
     headerMode: 'none',
