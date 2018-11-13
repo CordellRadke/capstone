@@ -14,10 +14,6 @@ import firebase from 'firebase'
 import { userVehicleCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/vehicle-actions';
 import { Images } from '../Themes'
 
-
-
-
-
 import styles from './Styles/VehicleCreateScreenStyle'
 
 class VehicleCreateScreen extends Component {
@@ -156,7 +152,7 @@ class VehicleCreateScreen extends Component {
         return (
             <View>
                 <ScrollView>
-                    <Header style={{ shadowOpacity: 0, backgroundColor: '#595478' }} >
+                    <Header style={styles.headerTitle} >
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.navigate('HomeScreen')}>
                                 <Icon name='arrow-back' />
@@ -202,7 +198,7 @@ class VehicleCreateScreen extends Component {
 
 
                             {/* Here we offer photo upload if they want.. */}
-                            {!!this.state.vehicleMake && !!this.state.vehicleYear && !!this.state.vehicleModel && !!this.state.vehicleTrim && this.state.vehiclePhoto.length === 0 ? <VehiclePhotoPicker buttonText={'Photo'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} /> : <VehiclePhotoPicker buttonText={'Another'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} />}
+                            {!!this.state.vehicleMake && !!this.state.vehicleYear && !!this.state.vehicleModel && !!this.state.vehicleTrim && this.state.vehiclePhoto.length === 0 ? <VehiclePhotoPicker buttonText={'Photo'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} /> : <VehiclePhotoPicker buttonText={'Upload Photo of Vehicle?'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} />}
 
 
 

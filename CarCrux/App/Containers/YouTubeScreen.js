@@ -9,6 +9,7 @@ import YTSearch from 'youtube-api-search';
 import firebase from 'firebase'
 import { userVehicleCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/vehicle-actions';
 import { Images } from '../Themes'
+import styles from './Styles/YouTubeScreenStyle'
 
 
 // import styles from './Styles/VehicleCreateScreenStyle'
@@ -65,6 +66,16 @@ class YouTubeScreen extends Component {
             
         
                 <View>
+                    <Header style={styles.headerTitle} >
+                        <Left>
+                            <Button transparent onPress={() => this.props.navigation.navigate('HomeScreen')}>
+                                <Icon name='arrow-back' />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title><Text>Tutorial Videos</Text></Title>
+                        </Body>
+                    </Header>
                     <ScrollView>
             
                 {/*{this.state.vehicle.photosReference ?*/}
@@ -104,17 +115,14 @@ class YouTubeScreen extends Component {
                             </Body>
                         </CardItem>
                         <CardItem>
-                            <Text>Ex. "Oil Change" or "Brake Pad Replacement"</Text>
-                        </CardItem>
-                        <CardItem>
                             <Item rounded>
-                                <Input placeholder='Rounded Textbox' onChangeText={repairRequest => this.setState({ repairRequest })} />
+                                <Input placeholder='Ex. "Oil Change"' onChangeText={repairRequest => this.setState({ repairRequest })} />
                             </Item>
 
                         </CardItem>
 
-                        <Button style={{ margin: 5 }} block onPress={this.searchYoutube}>
-                            <Text>Go</Text>
+                        <Button style={styles.searchButtons} block onPress={this.searchYoutube}>
+                            <Text style={styles.searchText}>Go</Text>
                         </Button>
 
 
@@ -122,11 +130,9 @@ class YouTubeScreen extends Component {
                         {this.state.youtubeVideoResults.length > 1 ?
                             <Content>
                                 <Text>Okay, heres what I found...</Text>
-                                <Button style={{ margin: 5 }} block onPress={() => this.setState({ toggleToolsNeeded: !this.state.toggleToolsNeeded })}>
-                                    <Text>Show Tools Needed</Text>
-                                </Button>
-                                <Button style={{ margin: 5 }} block onPress={() => this.setState({ toggleRepairVideo: !this.state.toggleRepairVideo })}>
-                                    <Text>Show Repair Videos</Text>
+                                
+                                <Button style={styles.searchButtons} block onPress={() => this.setState({ toggleRepairVideo: !this.state.toggleRepairVideo })}>
+                                    <Text style={styles.searchText}>Show Repair Videos</Text>
                                 </Button>
                                 {/* //show video results on request */}
                                 {this.state.toggleRepairVideo ?
@@ -142,9 +148,7 @@ class YouTubeScreen extends Component {
                                         </Content>
                                     }) : undefined}
 
-                                <Button style={{ margin: 5 }} block onPress={() => this.setState({ toggleShowInstructions: !this.state.toggleShowInstructions })}>
-                                    <Text>Show Instructions</Text>
-                                </Button>
+                                
                             </Content> : undefined}
 
 

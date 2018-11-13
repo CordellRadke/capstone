@@ -87,7 +87,7 @@ export default class VehiclePhotoPicker extends React.Component {
                     {this.state.wantsPhotoUpload ? <Spinner /> : undefined}
                     <Content>
 
-                        <Text>Upload {this.props.buttonText} of vehicle</Text>
+                        <Text>{this.props.buttonText}</Text>
                         <Button transparent onPress={this.choosePhoto} >
                             <Icon name="images" />
                             {<Text>Yes!</Text>}
