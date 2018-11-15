@@ -172,9 +172,9 @@ class VehicleCreateScreen extends Component {
                             <Text onPress={() => this.trimPicked('')}>Trim: {this.state.vehicleTrim.name}</Text>
                             {/* Here we display all photos they uploaded */}
                             {/* TODO if they click a photo it will remove it  */}
-                            {this.state.vehiclePhoto.length > 0 && this.state.vehiclePhoto.map(ele => {
+                            {this.state.vehiclePhoto.length > 0 && this.state.vehiclePhoto.map((ele, key) => {
 
-                                return <TouchableHighlight onPress={() => this.specificPhotoDelete(ele)}>
+                                return <TouchableHighlight onPress={() => this.specificPhotoDelete(ele)} key={key}>
                                     <View>
                                         <Image
                                             style={{ width: 50, height: 50 }}

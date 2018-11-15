@@ -38,7 +38,7 @@ class MaintHistory extends Component {
             <Container>
                 <Content>
                
-                    <Text>Hi This is the Maintenance History Screen</Text>
+                    <Text></Text>
                 </Content>
             </Container>
 

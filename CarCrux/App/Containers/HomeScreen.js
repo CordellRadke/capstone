@@ -7,10 +7,9 @@ import firebase from 'firebase'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import HomeOverview from '../Components/HomeOverview'
 import MaintHistory from '../Components/MaintHistory'
+import Dashboard from '../Components/Dashboard'
 import { deleteVehicleRequest } from '../Actions/vehicle-actions'
 
-import DashScreen from './DashScreen';
-import YouTubeScreen from './YouTubeScreen'
 
 import styles from './Styles/HomeScreenStyle'
 
@@ -153,14 +152,14 @@ class HomeScreen extends Component {
           {/* Show MaintHistory from tab at bottom */}
           {this.state.historyActive && <MaintHistory navigation={this.props.navigation} props={this.props.user} /> }
           {/* Show DashScreen from tab at bottom */}
-          {this.state.dashActive && <DashScreen navigation={this.props.navigation} props={this.props.user} /> }
+          {this.state.dashActive && <Dashboard navigation={this.props.navigation} props={this.props.user} /> }
           
 
         {/* FOOTER */}
        
         <Footer>
        
-          <FooterTab style={{backgroundColor:'#595478', tabActiveBgColor:'red'}}>
+          <FooterTab style={{backgroundColor:'#595478'}}>
           <Button vertical onPress={() => this.onGaragePress()} active={this.state.garageActive}>
               <Icon name="home" />
               <Text style={{color: 'white'}}>Garage</Text>
