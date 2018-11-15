@@ -7,7 +7,7 @@ import AddVehicleButton from './Styles/AddVehicleButton';
 const backgroundImage = require("../Images/Dash-Icon.png");
 
 
-export default class HomeOverview extends Component {
+export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -68,23 +68,43 @@ export default class HomeOverview extends Component {
                                                 <CardItem>
                                                     <Left>
 
-                                                        <Thumbnail source={dynamicAvatar} key={key}/>
+                                                        <Thumbnail source={dynamicAvatar}  key={key}/>
                                                         <Body>
                                                             <Text>{ele.model_year + ' ' + ele.make_display + ' ' + ele.model_name}</Text>
                                                             <Text note>{ele.model_trim}</Text>
                                                         </Body>
                                                     </Left>
+                                                </CardItem>
+                                                <CardItem cardBody>
+                                                    <Image source={dynamicAvatar} style={{ height: 200, width: null, flex: 1 }} />
+                                                </CardItem>
+
+                                                <CardItem>
+                                                    <Body>
+                                                        {/* //I have no idea why transmission is white/why this works.. but it does... */}
+                                                        <Text>
+
+                                                            Transmission:   {ele.model_transmission_type === undefined ? 'Automatic' : ele.model_transmission_type}
+                                                        </Text>
+                                                        <Text>
+                                                            {`Horsepower: ` + ele.model_engine_power_hp}
+                                                        </Text>
+
+                                                    </Body>
+                                                </CardItem>
+                                                <CardItem>
                                                     <Right>
-                                                        <Button transparent onPress={() => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))} textStyle={{ color: '#87838B' }}>
-                                                            <Icon name="close-circle" />
-                                                            <Text>Delete</Text>
+                                                        <Button transparent onPress={() => this.props.navigation.navigate('YouTubeScreen', { vehicle: ele })} textStyle={{ color: '#87838B' }}>
+                                                            <Icon name="build" />
+                                                            <Text>Fix it Now!</Text>
                                                         </Button>
                                                     </Right>
+
+                                                    
                                                 </CardItem>
-                                                
                                             </Card>
                                         )
-                                    }) }
+                                    })}
                                 </ScrollView>
                                 :
                                 <Container>

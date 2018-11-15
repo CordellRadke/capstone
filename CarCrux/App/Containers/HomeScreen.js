@@ -6,17 +6,19 @@ import Spinner from '../Components/Spinner'
 import firebase from 'firebase'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import HomeOverview from '../Components/HomeOverview'
+import MaintHistory from '../Components/MaintHistory'
+import Dashboard from '../Components/Dashboard'
 import { deleteVehicleRequest } from '../Actions/vehicle-actions'
 
 
-
 import styles from './Styles/HomeScreenStyle'
+
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true, dashActive: false, historyActive: false, NewEventActive: false, OverviewActive: false, headerTitle: 'My Vehicles', user: {}
+      loading: true, dashActive: false, historyActive: false, videoActive: false, garageActive: false, headerTitle: 'Garage', user: {}
     }
     this.openDrawer = this.openDrawer.bind(this);
   }
@@ -26,8 +28,9 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    this.setState({ OverviewActive: true })
+    this.setState({ garageActive: true })
     // this.state.user.length === 0 ? this.state.loading === true : this.state.loading === false
+    
   }
   componentWillReceiveProps(nextProps) {
     this.state.user.length === 0 ? this.setState({ user: nextProps.user, loading: true }) : undefined
@@ -64,29 +67,31 @@ class HomeScreen extends Component {
 
   // *************** These the the three bottons on the bottom nav.
 
-  onDashboardPress() {
-    this.setState({ dashActive: true, historyActive: false, OverviewActive: false, NewEventActive: false, headerTitle: 'History' }, function () {
+  onGaragePress() {
+    this.setState({ garageActive: true, historyActive: false, dashActive: false, videoActive: false, headerTitle: 'Garage' }, function () {
       // do something with new state
     });
-    // this.setState = ({ dashActive: true })
+    //this.setState = ({ garageActive: true })
   }
 
   onHistoryPress() {
-    this.setState({ historyActive: false, OverviewActive: false, NewEventActive: false, headerTitle: 'History' }, function () {
+    this.setState({ historyActive: true, garageActive: false, videoActive: false, dashActive: false, headerTitle: 'History' }, function () {
       // do something with new state
     });
     // this.setState = ({ historyActive: true })
   }
 
-  onNewEventPress() {
-    this.setState({ historyActive: false, OverviewActive: false, NewEventActive: true, headerTitle: 'New Entry' }, function () {
+  onVideoPress() {
+    this.setState({ videoActive: true, historyActive: false, garageActive: false, dashActive: false, headerTitle: 'Videos' }, function () {
       // do something with new state
     });
   }
 
-  onOverviewPress() {
-    this.setState({ historyActive: false, OverviewActive: true, NewEventActive: false, headerTitle: 'My Overview' }, function () {
+  onDashBoardPress() {
+    this.setState({ dashActive: true, historyActive: false, garageActive: false, videoActive: false, headerTitle: 'Dash' }, function () {
+      
       // do something with new state
+      
     });
 
   }
@@ -112,11 +117,16 @@ class HomeScreen extends Component {
 
     return (
       // ******** This is the Header and Tab Navigation ********
+      
+
+
+
       <View style={{ flex: 1 }}>
-          <Header style={{backgroundColor:'#595478'}}>
+     <Header style={{backgroundColor: '#595478'}}>
+          
+            <Title style={{ fontSize: 10 }} >Welcome Back {this.props.user.account.username}</Title>
             <Body>
-              <Text style={{fontSize:20, color:'white', marginLeft:117}}>GARAGE</Text>
-              <Title style={{ fontSize: 10 }} >Welcome Back {this.props.user.account.username}</Title>
+              <Text style={{color: 'white', fontSize: 20 , marginLeft: 60}}>{this.state.headerTitle}</Text>
             </Body>
             <Right>
               <Menu
@@ -135,17 +145,22 @@ class HomeScreen extends Component {
             </Right>
           </Header>
 
-
+          {/** ALL TAB NAVIGATION */}
+ 
           {/* Show Garage from tab at bottom.  */}
-          {this.state.OverviewActive && <HomeOverview navigation={this.props.navigation} props={this.props.user} deleteVehicleRequest={this.props.deleteVehicleRequest} /> }
+          {this.state.garageActive && <HomeOverview navigation={this.props.navigation} props={this.props.user} deleteVehicleRequest={this.props.deleteVehicleRequest} /> }
           {/* Show MaintHistory from tab at bottom */}
           {this.state.historyActive && <MaintHistory navigation={this.props.navigation} props={this.props.user} /> }
+          {/* Show DashScreen from tab at bottom */}
+          {this.state.dashActive && <Dashboard navigation={this.props.navigation} props={this.props.user} /> }
+          
 
         {/* FOOTER */}
-        
+       
         <Footer>
-          <FooterTab style={{backgroundColor:'#595478', tabActiveBgColor:'red'}}>
-          <Button vertical onPress={() => this.onOverviewPress()} active={this.state.OverviewActive}>
+       
+          <FooterTab style={{backgroundColor:'#595478'}}>
+          <Button vertical onPress={() => this.onGaragePress()} active={this.state.garageActive}>
               <Icon name="home" />
               <Text style={{color: 'white'}}>Garage</Text>
             </Button>
@@ -157,12 +172,11 @@ class HomeScreen extends Component {
               <Icon type="FontAwesome" name="wrench" />
               <Text style={{color: 'white'}}>History</Text>
             </Button>
-            <Button vertical onPress={() => this.onNewEventPress()} active={this.state.NewEventActive}>
-              <Icon type="FontAwesome" active name="play" />
-              <Text style={{color: 'white'}}>Videos</Text>
-            </Button>
+            
           </FooterTab>
+      
         </Footer>
+                  
         
       </View>
     )

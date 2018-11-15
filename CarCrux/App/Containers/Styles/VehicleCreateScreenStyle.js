@@ -25,5 +25,11 @@ export default StyleSheet.create({
     },
     textInput: {
         backgroundColor: 'rgba(255, 255, 255, .75)',
+    },
+    headerTitle:{
+        shadowOpacity: 0, 
+        backgroundColor: '#595478'
+
+
     }
 })

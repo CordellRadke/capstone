@@ -9,15 +9,12 @@ import YTSearch from 'youtube-api-search';
 import firebase from 'firebase'
 import { userVehicleCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/vehicle-actions';
 import { Images } from '../Themes'
-
-
-
-
+import styles from './Styles/YouTubeScreenStyle'
 
 
 // import styles from './Styles/VehicleCreateScreenStyle'
 
-class RepairScreen extends Component {
+class YouTubeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +42,7 @@ class RepairScreen extends Component {
     searchYoutube() {
 
 
-        YTSearch({ key: 'AIzaSyD356pL-yUmg00fr43Geu-_fIUZUF8X1Cc', term: this.state.vehicle.model_year + ' ' + this.state.vehicle.make_display + ' ' + this.state.vehicle.model_name + ' ' + this.state.repairRequest }, result => {
+        YTSearch({ key: 'AIzaSyBN5FEo6ZuxY5oPpkc585qSW6lEnvjyvlY', term: this.state.vehicle.model_year + ' ' + this.state.vehicle.make_display + ' ' + this.state.vehicle.model_name + ' ' + this.state.repairRequest }, result => {
             this.setState({ youtubeVideoResults: result }, function () {
 
                 console.log('firing search youtube', this.state);
@@ -66,13 +63,27 @@ class RepairScreen extends Component {
     render() {
 
         return (
-            <ScrollView>
-                {this.state.vehicle.photosReference ?
+            
+        
+                <View>
+                    <Header style={styles.headerTitle} >
+                        <Left>
+                            <Button transparent onPress={() => this.props.navigation.navigate('HomeScreen')}>
+                                <Icon name='arrow-back' />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title><Text>Tutorial Videos</Text></Title>
+                        </Body>
+                    </Header>
+                    <ScrollView>
+            
+                {/*{this.state.vehicle.photosReference ?*/}
                     <Card style={{ flex: 0 }}>
                         <CardItem>
                             <Left>
 
-                                <Thumbnail source={{ uri: this.state.vehicle.photosReference.referenceToUploadedPhotos[0] }} />
+                                {/*<Thumbnail source={{ uri: this.state.vehicle.photosReference.referenceToUploadedPhotos[0] }} />*/}
                                 <Body>
                                     <Text>{this.state.vehicle.model_year + ' ' + this.state.vehicle.make_display + ' ' + this.state.vehicle.model_name}</Text>
                                     <Text note>{this.state.vehicle.model_trim}</Text>
@@ -104,17 +115,14 @@ class RepairScreen extends Component {
                             </Body>
                         </CardItem>
                         <CardItem>
-                            <Text>Ex. "Oil Change" or "Brake Pad Replacement"</Text>
-                        </CardItem>
-                        <CardItem>
                             <Item rounded>
-                                <Input placeholder='Rounded Textbox' onChangeText={repairRequest => this.setState({ repairRequest })} />
+                                <Input placeholder='Ex. "Oil Change"' onChangeText={repairRequest => this.setState({ repairRequest })} />
                             </Item>
 
                         </CardItem>
 
-                        <Button style={{ margin: 5 }} block onPress={this.searchYoutube}>
-                            <Text>Go</Text>
+                        <Button style={styles.searchButtons} block onPress={this.searchYoutube}>
+                            <Text style={styles.searchText}>Go</Text>
                         </Button>
 
 
@@ -122,11 +130,9 @@ class RepairScreen extends Component {
                         {this.state.youtubeVideoResults.length > 1 ?
                             <Content>
                                 <Text>Okay, heres what I found...</Text>
-                                <Button style={{ margin: 5 }} block onPress={() => this.setState({ toggleToolsNeeded: !this.state.toggleToolsNeeded })}>
-                                    <Text>Show Tools Needed</Text>
-                                </Button>
-                                <Button style={{ margin: 5 }} block onPress={() => this.setState({ toggleRepairVideo: !this.state.toggleRepairVideo })}>
-                                    <Text>Show Repair Videos</Text>
+                                
+                                <Button style={styles.searchButtons} block onPress={() => this.setState({ toggleRepairVideo: !this.state.toggleRepairVideo })}>
+                                    <Text style={styles.searchText}>Show Repair Videos</Text>
                                 </Button>
                                 {/* //show video results on request */}
                                 {this.state.toggleRepairVideo ?
@@ -142,26 +148,23 @@ class RepairScreen extends Component {
                                         </Content>
                                     }) : undefined}
 
-                                <Button style={{ margin: 5 }} block onPress={() => this.setState({ toggleShowInstructions: !this.state.toggleShowInstructions })}>
-                                    <Text>Show Instructions</Text>
-                                </Button>
+                                
                             </Content> : undefined}
 
 
-                    </Card>
-                    : undefined
-                }
+                    </Card> 
+                
 
 
-
-
-            </ScrollView>
+                </ScrollView>
+            </View>
+           
 
 
         )
     }
 }
-//Merry Christmas Github
+
 const mapStateToProps = (state) => {
     return {
         user: state.user,
@@ -173,6 +176,4 @@ const mapDispatchToProps = (dispatch) => {
 
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(RepairScreen)
-
+export default connect(mapStateToProps, mapDispatchToProps)(YouTubeScreen)

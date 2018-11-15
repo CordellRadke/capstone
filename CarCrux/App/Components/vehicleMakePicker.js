@@ -70,8 +70,8 @@ export default class VehicleMakePicker extends Component {
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {
-                                    this.state.makes.map((ele) => {
-                                        return (<Picker.Item label={ele.make_display} value={ele.make_display} />)
+                                    this.state.makes.map((ele, key) => {
+                                        return (<Picker.Item label={ele.make_display} value={ele.make_display} key={key}/>)
                                     })
                                 }
                             </SmartPicker>

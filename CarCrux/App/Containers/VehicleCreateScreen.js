@@ -9,13 +9,10 @@ import VehicleMakePicker from '../Components/vehicleMakePicker'
 import VehicleModelPicker from '../Components/vehicleModelPicker'
 import VehicleTrimPicker from '../Components/vehicleTrimPicker'
 import VehiclePhotoPicker from '../Components/vehiclePhotoPicker'
+
 import firebase from 'firebase'
 import { userVehicleCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/vehicle-actions';
 import { Images } from '../Themes'
-
-
-
-
 
 import styles from './Styles/VehicleCreateScreenStyle'
 
@@ -135,7 +132,7 @@ class VehicleCreateScreen extends Component {
             buttonText: 'Sounds Good',
             duration: 3000,
         })
-        // this.props.navigation.navigate('HomeScreen')
+        this.props.navigation.navigate('HomeScreen')
     }
 
     submitPhoto() {
@@ -155,14 +152,14 @@ class VehicleCreateScreen extends Component {
         return (
             <View>
                 <ScrollView>
-                    <Header style={{ shadowOpacity: 0, backgroundColor: 'transparent' }} >
+                    <Header style={styles.headerTitle} >
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.navigate('HomeScreen')}>
                                 <Icon name='arrow-back' />
                             </Button>
                         </Left>
                         <Body>
-                            <Title><Text></Text></Title>
+                            <Title><Text>ADD VEHICLE</Text></Title>
                         </Body>
                     </Header>
                     <Container style={styles.Container}>
@@ -175,9 +172,9 @@ class VehicleCreateScreen extends Component {
                             <Text onPress={() => this.trimPicked('')}>Trim: {this.state.vehicleTrim.name}</Text>
                             {/* Here we display all photos they uploaded */}
                             {/* TODO if they click a photo it will remove it  */}
-                            {this.state.vehiclePhoto.length > 0 && this.state.vehiclePhoto.map(ele => {
+                            {this.state.vehiclePhoto.length > 0 && this.state.vehiclePhoto.map((ele, key) => {
 
-                                return <TouchableHighlight onPress={() => this.specificPhotoDelete(ele)}>
+                                return <TouchableHighlight onPress={() => this.specificPhotoDelete(ele)} key={key}>
                                     <View>
                                         <Image
                                             style={{ width: 50, height: 50 }}
@@ -201,16 +198,16 @@ class VehicleCreateScreen extends Component {
 
 
                             {/* Here we offer photo upload if they want.. */}
-                            {!!this.state.vehicleMake && !!this.state.vehicleYear && !!this.state.vehicleModel && !!this.state.vehicleTrim && this.state.vehiclePhoto.length === 0 ? <VehiclePhotoPicker buttonText={'Photo'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} /> : <VehiclePhotoPicker buttonText={'Another'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} />}
+                            {!!this.state.vehicleMake && !!this.state.vehicleYear && !!this.state.vehicleModel && !!this.state.vehicleTrim && this.state.vehiclePhoto.length === 0 ? <VehiclePhotoPicker buttonText={'Photo'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} /> : <VehiclePhotoPicker buttonText={'Upload Photo of Vehicle?'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} />}
 
 
 
                             {/* If they don't upload photo change button text  */}
-                            {this.state.vehicleMake !== '' && this.state.vehicleYear !== '' && this.state.vehicleModel !== '' && this.state.vehicleTrim !== '' && <Button block onPress={this.submitVehicleInformation}>
-                                {this.state.vehiclePhoto !== '' ? <Text>Save Vehicle</Text> : <Text>Not now, Save Vehicle</Text>}
+                            {this.state.vehicleMake !== '' && this.state.vehicleYear !== '' && this.state.vehicleModel !== '' && this.state.vehicleTrim !== '' && <Button style={{backgroundColor: 'green'}}block onPress={this.submitVehicleInformation}>
+                                {this.state.vehiclePhoto !== '' ? <Text style={{fontSize: 20,color: 'white'}}>Save Vehicle</Text> : <Text>Not now, Save Vehicle</Text>}
                             </Button> }
 
-                            {this.state.loading && <Spinner color='blue' /> }
+                            {/*this.state.loading && <Spinner color='blue' /> */}
                         </Content>
                     </Container>
                 </ScrollView>
