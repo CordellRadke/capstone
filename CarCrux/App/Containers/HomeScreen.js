@@ -150,7 +150,7 @@ class HomeScreen extends Component {
           {/* Show Garage from tab at bottom.  */}
           {this.state.garageActive && <HomeOverview navigation={this.props.navigation} props={this.props.user} deleteVehicleRequest={this.props.deleteVehicleRequest} /> }
           {/* Show MaintHistory from tab at bottom */}
-          {this.state.historyActive && <MaintHistory navigation={this.props.navigation} props={this.props.user} /> }
+          {this.state.historyActive && <MaintHistory navigation={this.props.navigation} props={this.props.user} deleteNoteRequest={this.props.deleteNoteRequest}/> }
           {/* Show DashScreen from tab at bottom */}
           {this.state.dashActive && <Dashboard navigation={this.props.navigation} props={this.props.user} /> }
           
