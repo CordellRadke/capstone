@@ -11,6 +11,7 @@ import Dashboard from '../Components/Dashboard'
 import { deleteVehicleRequest } from '../Actions/vehicle-actions'
 
 
+
 import styles from './Styles/HomeScreenStyle'
 
 
@@ -199,7 +200,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loginRequest: (user) => dispatch(loginRequest(user)),
     deleteVehicleRequest: (user, vehicle, index) => dispatch(deleteVehicleRequest(user, vehicle, index)),
-
+    
   }
 }
 
