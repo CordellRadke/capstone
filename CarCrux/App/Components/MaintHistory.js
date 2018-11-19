@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { ScrollView, Text, KeyboardAvoidingView, View, ListView, TextInput, StatusBar, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, ListView } from 'react-native';
 import { connect } from 'react-redux'
 import { Container, Content, Header, Form, Input, Item, Button, Label, Icon, List, ListItem } from 'native-base';
 import Spinner from '../Components/Spinner'
@@ -9,8 +9,6 @@ import firebase from 'firebase'
 import { userVehicleCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/vehicle-actions';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
-import DatePicker from 'react-native-datepicker'
-
 
 let data = []
 
@@ -52,7 +50,7 @@ export default class MaintHistory extends Component {
     
       async deleteRow(secId, rowId, rowMap, data) {
     
-        await firebase.database().ref('notes/' + data.key).set(null)
+        await firebase.database().ref('users/notes/' + data.key).set(null)
     
         rowMap[`${secId}${rowId}`].props.closeRow();
         var newData = [...this.state.listViewData];
