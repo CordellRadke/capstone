@@ -27,7 +27,6 @@ export default class MaintHistory extends Component {
          
         }
     
-    
       }
     
       componentDidMount() {
@@ -76,30 +75,6 @@ export default class MaintHistory extends Component {
                     onChangeText={(newNote) => this.setState({ newNote })}
                     placeholder="Add Note"
                   />
-                  <DatePicker
-                                style={{width: 200}}
-                                date={this.state.date}
-                                mode="date"
-                                placeholder="select date"
-                                format="YYYY-MM-DD"
-                                minDate="2018-01-01"
-                                maxDate="2020-01-01"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 4,
-                                    marginLeft: 0
-                                },
-                                dateInput: {
-                                    marginLeft: 36
-                                }
-                                // ... You can check the source to find the other keys.
-                                }}
-                                onDateChange={(date) => {this.setState({date: date})}}
-                            />
                   <Button onPress={() => this.addRow(this.state.newNote)}>
                     <Icon name="add" />
                   </Button>
@@ -117,7 +92,7 @@ export default class MaintHistory extends Component {
                   </ListItem>
                 }
                 renderLeftHiddenRow={data =>
-                  <Button full onPress={() => this.addRow(data)} >
+                  <Button full onPress={() => alert(data.val().name)} >
                     <Icon name="information-circle" />
                   </Button>
                 }
