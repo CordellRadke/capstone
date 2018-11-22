@@ -4,7 +4,9 @@ Cordell Radke - Web Application Integrations
 [Docs](https://github.com/CordellRadke/capstone/tree/dev/docs)
 
 #  CarCrux
+
 Many Young Adults struggle to make car payments and lack the skills to take care of their vehicles that drive them to work everyday. This Car Crux App should help those learn the crux of their Vehicle's most common issues to keep them safe on the road and drive another day. This app aims to keep track of their latest payments and repairs through adding their own notes. This way they can stay organized and keep track of when they should be getting that next oil change. On top of that, this app will provide them with the knowledge needed to keep their Vehicles in tip-top shape with YouTube video tutorials. Once the user inputs their Vehicle data and touches the "Fix it Now!" button, the app will do the rest and retrieve every YouTube video on the specific topic (e.g. Oil Change) they inputted in the search bar pertaining to their specific vehicle.
+
 
 ## Technologies Used
 
@@ -15,10 +17,13 @@ Many Young Adults struggle to make car payments and lack the skills to take care
 * [redux](https://redux.js.org/basics/usagewithreact): ^3.6.0,
 * [youtube-api-search](https://www.npmjs.com/package/youtube-api-search): 0.0.5,
 
+
 ## Firebase Setup
 
 In App.js file of CarCrux we must initialize the firebase connection...
+
 Replace all Firebase info with your own...
+
 
 ```
 class App extends Component {
@@ -76,4 +81,3 @@ yarn cache clean
 yarn add uuid
 
 ```
-

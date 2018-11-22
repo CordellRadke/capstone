@@ -22,6 +22,7 @@
   * Dashboard main hub for Vehicle Details and "Fix it now!" button
   * History view for List of user inputted Notes (oil change, tire change, light bulb replacement, etc.)
   * Video Tutorials view for tutorials on car maintenance (Tutorials on how to change a tire, oil change, etc.)
+
   
 ## Sitemap
   ### Splash Screen
@@ -57,6 +58,11 @@
    - History -> maintenanceView
    - Garage -> garageView
    ```
+  User can view history, garage, or videos
+   - history -> historyView
+   - garage -> garageView
+   - videos -> videoView
+
 ## Interface
   ### Information Architecture
    ### Splash Screen
@@ -85,16 +91,18 @@
  ## Infrastructure
  
    ### Technical Requirements
+
    - [Firebase](https://console.firebase.google.com/u/1/) for storing vehicle and user data
    - Android Studio (Emulator)
    - Local Web Server
-   - [Expo](https://docs.expo.io/versions/latest/distribution/building-standalone-apps)
+   - [Firebase](https://firebase.google.com/) for User data
    
    ### Programming Languages
    - [React Native](https://facebook.github.io/react-native/docs/getting-started)
    
    ### Integrations
    - [CarQuery API](http://www.carqueryapi.com/) for lists of makes, models, and styles
+
    
    ### Deployment Workflow
    
