@@ -187,6 +187,9 @@ class VehicleCreateScreen extends Component {
                             }) }
                         </View>
                         <Content>
+{/* Here we offer photo upload if they want.. */}
+                            {!!this.state.vehicleMake && !!this.state.vehicleYear && !!this.state.vehicleModel && !!this.state.vehicleTrim && this.state.vehiclePhoto.length === 0 ? <VehiclePhotoPicker buttonText={'Are you sure you do not want to add a Photo?'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} /> : <VehiclePhotoPicker buttonText={'Upload Photo of Vehicle?'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} />}
+
                             {/* These next conditionals dynamically show based on completion of full vehicle information  */}
                             {!this.state.vehicleYear && <VehicleYearPicker vehicleYear={this.yearPicked} /> }
 
@@ -197,8 +200,7 @@ class VehicleCreateScreen extends Component {
                             {!!this.state.vehicleModel && !!this.state.vehicleMake && this.state.vehicleTrim === '' && <VehicleTrimPicker homeState={this.state} vehicleTrim={this.trimPicked} /> }
 
 
-                            {/* Here we offer photo upload if they want.. */}
-                            {!!this.state.vehicleMake && !!this.state.vehicleYear && !!this.state.vehicleModel && !!this.state.vehicleTrim && this.state.vehiclePhoto.length === 0 ? <VehiclePhotoPicker buttonText={'Photo'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} /> : <VehiclePhotoPicker buttonText={'Upload Photo of Vehicle?'} homeState={this.state} user={this.props.user} vehiclePhoto={this.photoPicked} />}
+                            
 
 
 

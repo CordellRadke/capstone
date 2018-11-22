@@ -2,12 +2,14 @@
 ===
 CarCrux App
 ---
-A Car Fax/Vehicle Assistance and history reports application that will help those needing to take care of those pesky car payments or who simply need to know how to take better care of their vehicle. It will keep track of car repairs and include video tutorials on vehicle maintenance.
-##
 
+A Vehicle Maintenance application that will help those who simply need to know how to take better care of their vehicles. It will keep track of notes added by the user and give the user a quick and responsive way to look up how to fix their specific type of vehicle through a YouTube API to display an infinite amount of YouTube Knowledge.
+
+##
 Features
 ---
-*	Service/Repair History
+
+*	Note Taking
 *	Vehicle Specs
 *	Car Maintenance Tutorials
 
@@ -22,19 +24,16 @@ Technology Stack
 ---
 *	React Native
 *	React
-*	GitHub 
-*	JavaScript
 *	Firebase
-* Axios
-* Redux
+*	JavaScript
 
 ##
 Target Audience
 ---
 *	Age: 18-35
 *	Any income 
-*	Non-profit organization
-*	Loves cars and saving money
+*	Non-profit organizations
+*	Loves cars 
 
 ### Primary Audience
 
@@ -47,3 +46,4 @@ We can assume that 90% of these young adults have experienced some kind of diffu
 College Graduates and Autocross Drivers
 
 These people have already made some money over the past couple years and can easily afford car maintenance issues. But, they can easily be just as disorganized as anyone else. They may lack knowledge on maintaining their vehicles. They may waste hundreds and thousands of dollars on shop repairs when they could easily fix it themselves for cheap. Autocross drivers may want an app that will help them keep track of all the work they put into their cars.  
+

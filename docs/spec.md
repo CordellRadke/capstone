@@ -18,34 +18,51 @@
 [Filter of Github Features](https://github.com/CordellRadke/capstone/issues)
   * Splash Screen
   * Initial Login/Sign-Up Screen
-  * Garage view for Vehicles (Add, View, or Delete)
-  * Dashboard view main hub for Vehicle information
-  * History view for List of user inputted reports (oil change, tire change, light bulb replacement, etc.)
-  * Tutorials view for tutorials on car maintenance (Tutorials on how to change a tire, oil change, etc.)
+  * Garage for Vehicles (Add or Delete)
+  * Dashboard main hub for Vehicle Details and "Fix it now!" button
+  * History view for List of user inputted Notes (oil change, tire change, light bulb replacement, etc.)
+  * Video Tutorials view for tutorials on car maintenance (Tutorials on how to change a tire, oil change, etc.)
+
   
 ## Sitemap
   ### Splash Screen
   When app loads and app title is displayed
   After it loads the next screen will be the Login/Sign up view
+   ```
    - CARCRUX -> Login/SignUp
+   ```
   ### Login/SignUp
   User will be asked to login or signup
   After signing/logging in the next screen will be the garage view
+  ```
    - Login -> Garage
    - SignUp -> Sign-Up Form -> Garage
+   ```
   ### Garage
-  User can add, view, or delete a vehicle
-  When adding...
+  User can add or delete a vehicle
+  When adding... 
+  ```
    - addButton -> vehicleDataForm -> (updated)Garage
   Garage when vehicle has been added...
-   - vehicleData(view & delete buttons)
-   - view -> Dashboard
+   - vehicleData(delete button)
    - delete -> (Updated)GARAGE
+   - settingsButton -> addNew or Logout
+   ```
+   Note: if user wants to add another vehicle they can click settings button and add another vehicle.
   ### Dashboard
+  User can touch "Fix it Now" button
+  ```
+   - FixitNowButton -> YouTubeVideosView
+    
+    Tab Bar (Footer)
+   - History -> maintenanceView
+   - Garage -> garageView
+   ```
   User can view history, garage, or videos
    - history -> historyView
    - garage -> garageView
    - videos -> videoView
+
 ## Interface
   ### Information Architecture
    ### Splash Screen
@@ -54,29 +71,28 @@
    - Login -> Garage
    - SignUp -> Sign-Up Form: Email & Password -> Garage
    ### Garage
-   - vehicleData(View/Delete buttons)
-   - view -> Dashboard
+   ```
+   - vehicleData(Delete button)
    - delete -> (Updated)GARAGE
-   - addButton -> vehicleDataForm: Make, Model, Year, Style, Trim(optional)-> Dashboard   
+   - addButton -> vehicleDataForm: Make, Model, Year, Style, Trim(optional)-> Dashboard
+   ```   
    ### Dashboard
-   <- (back button) Inputted Vehicle Details at the top of view
-   - Vehicle efficiency levels from red to yellow to green
-   - Oil Change (Add Record) -> Form: approx Date & Mileage (Add) -> Dashboard
-   - Tire Rotation (Add Record) -> Form: approx Date & Mileage (Add) -> Dashboard   
+    - "Fix it now!" button -> YouTube Tutorial View -> Search Video Form 
    Bottom Navigation
-      - history -> historyView -> Add Record -> Form: Serviced Category(oilchange, tire rotation, etc.), Date, Mileage(Add Record)-> (updated)historyView 
-      - costs -> costsView -> Cost and Labor diagram of estimates -> Dashboard
-      - videos -> videoView -> List of tutorial Videos on basic car maintenance <-(back button) -> Dashboard
+     Tab Bar (Footer)
+   - History -> maintenanceView
+   - Garage -> garageView
          
          (coming soon) - find shop 
   ### Browser Support
  
-  Currently, App will be subjected to portrait mode for Android and IOS. Browser support will be added in later versions.
+  Currently, App will be subjected to portrait mode for Android and IOS. 
  
  ## Infrastructure
  
    ### Technical Requirements
-   - AsyncStorage for storing vehicle data
+
+   - [Firebase](https://console.firebase.google.com/u/1/) for storing vehicle and user data
    - Android Studio (Emulator)
    - Local Web Server
    - [Firebase](https://firebase.google.com/) for User data
@@ -85,7 +101,8 @@
    - [React Native](https://facebook.github.io/react-native/docs/getting-started)
    
    ### Integrations
-   - [Vehicle API](http://www.carqueryapi.com/) for lists of makes, models, and styles
+   - [CarQuery API](http://www.carqueryapi.com/) for lists of makes, models, and styles
+
    
    ### Deployment Workflow
    

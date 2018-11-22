@@ -13,15 +13,15 @@
 
 ## Initial Pitch
 
-[Pitch Video Link](https://www.youtube.com/watch?v=e0XferTlI8k)
+[Pitch Video Link]()https://www.youtube.com/watch?v=aYo9QFAku9c&t=164s
 
 ## Initial Project Spec
 
-[Project Spec Link]()
+[Project Spec Link](https://github.com/CordellRadke/capstone/blob/dev/docs/spec.md)
 
 ## MVP
 
-coming soon
+[MVP Link](https://github.com/CordellRadke/capstone)
 
 ## Pivot
 

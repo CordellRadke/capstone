@@ -64,11 +64,11 @@ export default class Dashboard extends Component {
                                         let dynamicAvatar = Images.background;
                                         { ele.photosReference !== undefined ? dynamicAvatar = { uri: `${ele.photosReference.referenceToUploadedPhotos[0]}` } : undefined }
                                         return (
-                                            <Card style={{ flex: 0 }}>
+                                            <Card style={{ flex: 0 }} key={key}>
                                                 <CardItem>
                                                     <Left>
 
-                                                        <Thumbnail source={dynamicAvatar}  key={key}/>
+                                                        <Thumbnail source={dynamicAvatar}  />
                                                         <Body>
                                                             <Text>{ele.model_year + ' ' + ele.make_display + ' ' + ele.model_name}</Text>
                                                             <Text note>{ele.model_trim}</Text>
