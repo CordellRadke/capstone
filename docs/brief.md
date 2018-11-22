@@ -41,13 +41,12 @@ Car Crux will allow users to maximize their budgets when making car payments on 
 
 They will be able to...
 * Keep track of recent maintenances by updating a non-intimidating form depending on the category they choose (oil change, tire change, etc.)
-* Find the average prices for car parts and labor
 * Have the ability to add multiple Vehicles in a single garage(Hub)
 * Have access to a variety of car maintenance tutorials
 
 ## Unique Value Proposition
 
-This app will be structured in such a way that someone who is clueless about cars and making car payments will understand a lot more about the steps it takes to save money on car maintenance issues. It will have a fun and intuitive design that will make users want to take action and stay as organized as possible when it comes to reports and budgets for their vehicles.
+This app will be structured in such a way that someone who is clueless about cars will understand a lot more about the steps it takes to save money on car maintenance issues. It will have a fun and intuitive design that will make users want to take action and stay as organized as possible when it comes to reports for their vehicles. This app features a YouTube api that retrieves data depending on the type of Vehicle a user has selected. It will look up specific maintenance tutorials depending on the year, make, model, and trim.
 
 ## Project Pitch
-[YouTube Link](https://www.youtube.com/watch?v=e0XferTlI8k)
+[YouTube Link](https://www.youtube.com/watch?v=aYo9QFAku9c&t=164s)
