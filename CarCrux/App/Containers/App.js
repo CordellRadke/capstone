@@ -6,7 +6,7 @@ import RootContainer from './RootContainer'
 import appStoreCreate from '../Redux/app-create-store'
 import * as firebase from 'firebase';
 import { Root } from "native-base";
-
+import SplashScreen from 'react-native-splash-screen';
 
 // create our store
 const store = appStoreCreate()
@@ -25,8 +25,17 @@ const store = appStoreCreate()
 
 
 class App extends Component {
-  state = { loggedIn: null };
+  
+  componentDidMount(){
 
+    SplashScreen.hide();
+
+  }
+  
+  
+  
+  
+  state = { loggedIn: null };
 
   componentWillMount() {
     firebase.initializeApp({
