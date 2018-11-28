@@ -54,11 +54,17 @@ class App extends Component {
 
 ## How to Run App
 
-1. cd to the repo
-2. Run Build for Android
-  * for Android
-    * Run Android Studio Emulator
-    * run `react-native run-android`
+### Run Build for Android
+   
+   * Open [Android Studio](https://developer.android.com/studio/)
+     * Open Android Studio terminal window 
+     * Run `cd carcrux`
+     * Run `npm start`
+     * Run [Android Studio Emulator](https://developer.android.com/studio/run/emulator)
+   * Open [VSCODE](https://code.visualstudio.com/) or a code editor of your choice
+     * Open VSCODE or your code editor's terminal window
+     * Run `cd carcrux`
+     * Run `react-native run-android`
  
  ## If any error messages occur at startup try the following...
 
