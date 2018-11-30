@@ -43,11 +43,39 @@ class App extends Component {
 
   }
 ```
+
+## YouTube API Setup
+
+In the YouTubeScreen.js file within the ```App/Containers``` directory we must add a key...
+
+The key can be retrieved from your [GoogleAPIs](https://console.developers.google.com/projectselector/apis/credentials?supportedpurview=project) credentials page...
+
+Once you have your key, add it to the ```searchYouTube()``` function...
+
+```
+
+searchYoutube() {
+
+
+        YTSearch({ key: 'YourKEYgoesHERE', term: this.state.vehicle.model_year + ' ' + this.state.vehicle.make_display + ' ' + this.state.vehicle.model_name + ' ' + this.state.repairRequest }, result => {
+            this.setState({ youtubeVideoResults: result }, function () {
+
+                console.log('firing search youtube', this.state);
+            })
+        });
+
+    }
+
+
+```
+
+
+
 ## How to Setup
 
-**Step 1:** git clone this repo:
+**Step 1:** git clone this repo
 
-**Step 2:** cd to the cloned repo:
+**Step 2:** cd to the cloned repo
 
 **Step 3:** Install the Application with `yarn` or `npm i`
 
@@ -56,12 +84,12 @@ class App extends Component {
 
 ### Run Build for Android
    
-   * Open [Android Studio](https://developer.android.com/studio/)
+* Open [Android Studio](https://developer.android.com/studio/)
      * Open Android Studio terminal window 
      * Run `cd carcrux`
      * Run `npm start`
      * Run [Android Studio Emulator](https://developer.android.com/studio/run/emulator)
-   * Open [VSCODE](https://code.visualstudio.com/) or a code editor of your choice
+* Open [VSCODE](https://code.visualstudio.com/) or a code editor of your choice
      * Open VSCODE or your code editor's terminal window
      * Run `cd carcrux`
      * Run `react-native run-android`
