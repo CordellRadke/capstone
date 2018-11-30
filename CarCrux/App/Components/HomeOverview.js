@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
-import { Image, ScrollView, View } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Left, Button, Thumbnail, Body } from 'native-base';
+import { Alert, Image, ScrollView, View } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Text, Icon, List, ListItem, Right, Left, Button, Thumbnail, Body} from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
-const backgroundImage = require("../Images/Dash-Icon.png");
 
 
 export default class HomeOverview extends Component {
@@ -37,21 +36,26 @@ export default class HomeOverview extends Component {
     }
 
     handleDelete(vehicle, index) {
-        this.setState({ loading: true }, function () {
-            this.props.deleteVehicleRequest(this.state.user, vehicle, index)
-            this.setState({ loading: false }, function () {
 
-            })
-
-        })
+      
+            this.setState({ loading: true }, function () {
+                this.props.deleteVehicleRequest(this.state.user, vehicle, index)
+                this.setState({ loading: false }, function () {
+        
+                })
+        
+             })
+       
     }
 
-    render() {
 
+    render() {
+     
+        
         return (
             // ******* The first if, renders loading spinner if firebase promise isn't returned yet.
             // ******* The second if, checks to make sure the user returned from firebase has vehicles.
-
+            
             <ScrollView>
 
                 <Container>
@@ -64,25 +68,48 @@ export default class HomeOverview extends Component {
                                         let dynamicAvatar = Images.background;
                                         { ele.photosReference !== undefined ? dynamicAvatar = { uri: `${ele.photosReference.referenceToUploadedPhotos[0]}` } : undefined }
                                         return (
-                                            <Card style={{ flex: 0 }} key={key}>
-                                                <CardItem>
+                                        
+                                            <List style={{ flex: 0 }} key={key}>
+        
+                                                <ListItem>
+                                               
                                                     <Left>
-
+                                                   
                                                         <Thumbnail source={dynamicAvatar}/>
                                                         <Body>
                                                             <Text>{ele.model_year + ' ' + ele.make_display + ' ' + ele.model_name}</Text>
                                                             <Text note>{ele.model_trim}</Text>
+                                                           
                                                         </Body>
                                                     </Left>
-                                                    <Right>
-                                                        <Button transparent onPress={() => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))} textStyle={{ color: '#87838B' }}>
-                                                            <Icon name="close-circle" />
-                                                            <Text>Delete</Text>
-                                                        </Button>
-                                                    </Right>
-                                                </CardItem>
                                                 
-                                            </Card>
+                                                       
+                                                        <Button transparent 
+                                                            title="Delete Vehicle" 
+                                                            onPress={() => Alert.alert(
+                                                                'Delete Vehicle',
+                                                                'Are you sure you want to delete this vehicle from your garage?',
+                                                                [
+
+                                                                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                                                                    {text: 'OK', onPress: () => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))}
+
+
+                                                                ],
+                                                                { cancelable: false }
+                                                            )}
+                                                        >
+                                                            <Icon name="trash" />
+                                                               
+                                                            
+                                                       </Button>
+                                                       
+                                                   
+                                                </ListItem>
+                                          
+                                            </List>
+                                           
+                                                
                                         )
                                     }) }
                                 </ScrollView>
@@ -103,3 +130,4 @@ export default class HomeOverview extends Component {
         );
     }
 }
+
