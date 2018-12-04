@@ -127,7 +127,7 @@ class VehicleCreateScreen extends Component {
 
 
         Toast.show({
-            text: 'We stored your ' + this.state.vehicleYear + ' ' + this.state.vehicleModel + '! You can edit this later.',
+            text: 'We stored your ' + this.state.vehicleYear + ' ' + this.state.vehicleModel + 'in your Garage!',
             position: 'bottom',
             buttonText: 'Sounds Good',
             duration: 3000,
