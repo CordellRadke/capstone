@@ -11,17 +11,22 @@ import { Images } from '../Themes'
 
 import styles from './Styles/VehicleCreateScreenStyle'
 import NoteDatePicker from '../Components/noteDate';
+import NoteTitlePicker from '../Components/noteTitle'
+
+
 
 class NoteScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //noteTitle: '', 
+            
             noteDate: '', 
-            //noteText: '', 
+            noteTitle: '', 
             loading: false,
+            
         }
         this.datePicked = this.datePicked.bind(this);
+        this.titlePicked = this.titlePicked.bind(this);
         this.submitNoteInformation = this.submitNoteInformation.bind(this);
     }
 
@@ -33,24 +38,24 @@ class NoteScreen extends Component {
     }
 
     // Updates this containers/screens state from the static component user input
-    // We allow the user to quickly click a stat on their vehicle to edit in case they mispressed. 
+    // We allow the user to quickly click a stat on their note to edit in case they mispressed. 
     // So we need to reset all choices after, just in case. 
 
     datePicked(date) {
-        this.setState({ noteDate: date}, function () {
+        this.setState({ noteDate: date, noteTitle: ''}, function () {
             console.log(this.state, 'Updated Date')
         });
 
     }
 
     // Updates this containers/screens state from the static component user input
-    // We allow the user to quickly click a stat on their vehicle to edit in case they mispressed. 
+    // We allow the user to quickly click a stat on their note to edit in case they mispressed. 
     // So we need to reset all choices after, just in case. 
-    // makePicked(make) {
-    //     this.setState({ vehicleMake: make, vehicleModel: '', vehicleTrim: '', }, function () {
-    //         console.log(this.state, 'Updated Make')
-    //     });
-    // }
+    titlePicked(title) {
+        this.setState({ noteTitle: title}, function () {
+            console.log(this.state, 'Updated Title')
+        });
+    }
 
     // // Updates this containers/screens state from the static component user input
     // // We allow the user to quickly click a stat on their vehicle to edit in case they mispressed. 
@@ -85,10 +90,19 @@ class NoteScreen extends Component {
     // }
 
     submitNoteInformation() {
-        console.log(this.props, 'NOTE%%%%ADDED%%%%%%%%', this.state.noteDate)
+
+        let noteDetail = 
+            {
+            noteDate: this.state.noteDate,
+            noteTitle: this.state.noteTitle,
+
+            };
+        
+
+        console.log(this.props, 'NOTE%%%%ADDED%%%%%%%%', noteDetail)
 
               
-                this.props.userNoteCreateRequest(this.state.noteDate, this.props.user.account);
+                this.props.userNoteCreateRequest(noteDetail, this.props.user.account);
                 
                     this.setState({ loading: false }, function () {
 
@@ -130,6 +144,7 @@ class NoteScreen extends Component {
                         <View>
                             <Text>Note Details:</Text>
                             <Text onPress={() => this.datePicked('')} >Date: {this.state.noteDate}</Text>
+                            <Text onPress={() => this.titlePicked('')} >Title: {this.state.noteTitle}</Text>
                          
                            
                         </View>
@@ -137,12 +152,12 @@ class NoteScreen extends Component {
 
 
                             {/* These next conditionals dynamically show based on completion of full vehicle information  */}
-                            {!this.state.noteDate && <NoteDatePicker noteDate={this.datePicked} homeState={this.state} /> }
-
+                            {!this.state.noteDate && <NoteDatePicker noteDate={this.datePicked} /> }
+                            {!!this.state.noteDate && !this.state.noteTitle &&<NoteTitlePicker noteTitle={this.titlePicked} homeState={this.state} /> }
                             
 
 
-                            {this.state.noteDate !== '' && <Button style={{backgroundColor: 'green'}}block onPress={this.submitNoteInformation}>
+                            {this.state.noteDate !== '' && this.state.noteTitle !== '' &&<Button style={{backgroundColor: 'green'}}block onPress={this.submitNoteInformation}>
                                <Text style={{fontSize: 20,color: 'white'}}>Save Note</Text>
                             </Button> }
 

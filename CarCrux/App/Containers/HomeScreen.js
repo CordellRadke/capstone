@@ -140,7 +140,7 @@ class HomeScreen extends Component {
                 </Button>
                 } >
                 {<MenuItem onPress={() => this.onVehicleCreatePress(this.props.navigation)}>Add New Vehicle</MenuItem>}
-                <MenuItem onPress={() => this.props.navigation.navigate('SettingsScreen')} >Settings</MenuItem>
+                <MenuItem onPress={() => this.props.navigation.navigate('NoteScreen')} >Add New Note</MenuItem>
                 <MenuDivider />
                 <MenuItem onPress={() => this.onLogoutPress(this.props.navigation)}>Logout</MenuItem>
               </Menu>

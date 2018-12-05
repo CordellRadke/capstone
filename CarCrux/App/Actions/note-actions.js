@@ -30,11 +30,11 @@ export const userNoteCreateRequest = (note, user) => dispatch => {
         // this will either be null or populated with notes. 
         let username = snapshot.val();
         {
-            //If null, set array we created earlier with their first car!
+            //If null, set array we created earlier with their first note!
             username === null ? firebase.database().ref('users/' + user.uid + '/allNotes').set({
                 allNotesArray
             }).then(() => {
-                //Then grab new snapshot with this allvehicle array to update our redux store
+                //Then grab new snapshot with this allNotes array to update our redux store
                 firebase.database().ref('users/' + user.uid).once('value').then(function (snapshot) {
 
                     let username = snapshot.val();
@@ -44,17 +44,17 @@ export const userNoteCreateRequest = (note, user) => dispatch => {
                 })
             }) :
 
-                //Otherwise username !== null and we need to add old vehicles with new vehicles. 
+                //Otherwise username !== null and we need to add old notes with new notes. 
                 //Promise because #javascript
                 Promise.all(username.allNotesArray.map(ele => {
                     allNotesArray.push(ele);
                 })).then(() => {
 
-                    //Store newly constructed array with all their vehicles
+                    //Store newly constructed array with all their notes
                     firebase.database().ref('users/' + user.uid + '/allNotes').set({
                         allNotesArray
                     }).then(() => {
-                        //Grab snapshot to update redux store with all their vehicles. 
+                        //Grab snapshot to update redux store with all their notes. 
                         firebase.database().ref('users/' + user.uid).once('value').then(function (snapshot) {
 
                             let username = snapshot.val();
@@ -79,7 +79,7 @@ export const deleteNoteRequest = (user, note, index) => dispatch => {
     console.log('INSIDE NOTE DELETE', user, note)
 
     let listOfUrls = [];
-    //Here we captures all the photos associated with this vehicle
+    //Here we captures all the photos associated with this notes
     firebase.database().ref('users/' + user.account.uid + `/allNotes/allNotesArray/` + index).once('value').then(function (snapshot) {
 
         listOfUrls = snapshot.val();

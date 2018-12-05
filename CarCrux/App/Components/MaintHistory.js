@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
-import { Alert, Image, ScrollView, View } from 'react-native';
+import { Alert, Image, ScrollView, View, ListView } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Icon, List, ListItem, Right, Left, Button, Thumbnail, Body} from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
 
 
+
 export default class MaintHistory extends Component {
     constructor(props) {
         super(props);
+   
         this.state = {
-            loading: true,
+            loading: true,           
             user: {},
         }
         this.handleDelete = this.handleDelete.bind(this)
@@ -55,7 +57,7 @@ export default class MaintHistory extends Component {
         return (
             // ******* The first if, renders loading spinner if firebase promise isn't returned yet.
             // ******* The second if, checks to make sure the user returned from firebase has vehicles.
-            
+          
             <ScrollView>
 
                 <Container>
@@ -65,20 +67,19 @@ export default class MaintHistory extends Component {
                                 <ScrollView>
                                     {this.props.props.allNotes.allNotesArray.map((ele, key) => {
 
-                                       
+                                       console.log(this.props.props.allNotes.allNotesArray);
                                         return (
                                         
                                             <List style={{ flex: 0 }} key={key}>
-        
+                                         
                                                 <ListItem>
                                                
                                                     <Left>
                                                    
-                                                
                                                         <Body>
                                                            
-                                                            <Text note>{this.props.props.allNotes.allNotesArray[0]}</Text>
-                                                           
+                                                            <Text note>{ele.noteTitle}</Text>
+                                                            
                                                         </Body>
                                                     </Left>
                                                 
@@ -105,11 +106,13 @@ export default class MaintHistory extends Component {
                                                        
                                                    
                                                 </ListItem>
-                                          
+                                              
                                             </List>
                                            
                                                 
                                         )
+
+                                        
                                     }) }
                                 </ScrollView>
                                 :
