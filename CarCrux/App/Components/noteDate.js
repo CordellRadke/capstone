@@ -5,14 +5,15 @@ import { Button, Text } from "native-base";
 // const Item = Picker.Item;
 
 import SmartPicker from 'react-native-smart-picker'
+import DatePicker from 'react-native-datepicker'
 
 export default class NoteDatePicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDate: "2018",
+            selectedDate: "2018-01-01",
             dates:[],
-            expanded: false
+          
             
         };
 
@@ -31,38 +32,33 @@ export default class NoteDatePicker extends Component {
 
     render() {
 
-        const data=[];
-        for (let i = 0; i < (2018 - 1941); i++) {
-
-            data.push(
-                { date: (2018 - i) }
-            )
-        }
+       
 
         return (
 
         <ScrollView >
             <View style={{ flex: 1, marginTop: 20 }}>
-                {data.length > 0 ?
+               
                     <ScrollView >
-                        <SmartPicker
-
-                            expanded={this.state.expanded}
-                            selectedValue={this.state.selectedDate}
-                            label='Note Date'
-                            onValueChange={this.setDate.bind(this)}
+                        <DatePicker
+                            date={this.state.selectedDate}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            minDate="2016-05-01"
+                            maxDate="2020-06-01"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                          
+                            onDateChange={this.setDate.bind(this)}
                         >
-                            {
-                                data.map((ele, key) => {
-                                    return (<Picker.Item label={ele.date.toString()} value={ele.date} key={key}/>)
-                                })
-                            }
-                        </SmartPicker>
+                           
+                        </DatePicker>
                         <Button block onPress={() => this.props.noteDate(this.state.selectedDate)}>
                             <Text>Done</Text>
                         </Button>
                     </ScrollView>
-                    : <Spinner />}
+                   
 
             </View>
 
