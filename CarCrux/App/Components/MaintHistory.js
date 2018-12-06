@@ -5,6 +5,8 @@ import { Container, Header, Content, Card, CardItem, Text, Icon, List, ListItem,
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
 import NoteStyle from './Styles/NoteStyle';
+import InputStyle from './Styles/InputStyle';
+import HeaderStyle from './Styles/HeaderStyle';
 
 
 
@@ -99,10 +101,10 @@ export default class MaintHistory extends Component {
                                                         }}>
                                                         <View style={{marginTop: 22}}>
                                                           <View>
-                                                            <Text>Note Details:</Text>
-                                                            <Text note>{ele.noteDate}</Text>
-                                                            <Text note>{ele.noteTitle}</Text>
-                                                            <Text note>{ele.noteText}</Text>
+                                                            <Text style={HeaderStyle.head}>Note Details:</Text>
+                                                            <Text style={InputStyle.notesDate} note>{ele.noteDate}</Text>
+                                                            <Text style={InputStyle.notesTitle} note>{ele.noteTitle}</Text>
+                                                            <Text style={InputStyle.notesText} note>{ele.noteText}</Text>
 
                                                             <TouchableHighlight
                                                               onPress={() => {

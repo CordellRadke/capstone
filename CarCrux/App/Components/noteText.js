@@ -41,7 +41,9 @@ export default class NoteTextPicker extends Component {
                
                     <ScrollView >
                         <TextInput
-                          
+                            style={{borderTopWidth: 0}}
+                            multiline = {true}
+                            numberOfLines = {10}
                             onChangeText={this.setText.bind(this)}
                         >
                            
