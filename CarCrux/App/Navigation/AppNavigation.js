@@ -7,6 +7,8 @@ import SignUpScreen from '../Containers/SignUpScreen'
 import SettingsScreen from '../Containers/SettingsScreen'
 import VehicleCreateScreen from '../Containers/VehicleCreateScreen'
 import YouTubeScreen from '../Containers/YouTubeScreen'
+import NoteScreen from '../Containers/NoteScreen'
+
 
 import styles from './Styles/NavigationStyles'
 
@@ -18,7 +20,9 @@ const PrimaryNav = StackNavigator({
   SignUpScreen: { screen: SignUpScreen },
   SettingsScreen: { screen: SettingsScreen },
   VehicleCreateScreen: { screen: VehicleCreateScreen },
-  YouTubeScreen: { screen: YouTubeScreen }
+  YouTubeScreen: { screen: YouTubeScreen },
+  NoteScreen: { screen: NoteScreen}
+
 
 }, {
     // Default config for all screens

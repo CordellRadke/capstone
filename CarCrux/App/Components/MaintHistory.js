@@ -1,117 +1,138 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { StyleSheet, Text, View, StatusBar, ListView } from 'react-native';
-import { connect } from 'react-redux'
-import { Container, Content, Header, Form, Input, Item, Button, Label, Icon, List, ListItem } from 'native-base';
-import Spinner from '../Components/Spinner'
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
-import firebase from 'firebase'
-import { userVehicleCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/vehicle-actions';
+import React, { Component } from 'react';
+import Spinner from './Spinner'
+import { Alert, Image, ScrollView, View, ListView } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Text, Icon, List, ListItem, Right, Left, Button, Thumbnail, Body} from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
 
-let data = []
+
 
 export default class MaintHistory extends Component {
-
     constructor(props) {
         super(props);
-    
-        this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-    
-        this.state = {
-          listViewData: data,
-          newNote: "",
-         
-        }
-    
-      }
-    
-      componentDidMount() {
-    
-      
-        var that = this
-    
-        firebase.database().ref('users/notes').on('child_added', function (data) {
-    
-          var newData = [...that.state.listViewData]
-          newData.push(data)
-          that.setState({ listViewData: newData })
-    
-        })
-    
-      }
-    
-      addRow(data) {
-    
-        var key = firebase.database().ref('users/notes').push().key
-        firebase.database().ref('users/notes').child(key).set({ name: data })
-      }
-    
-      async deleteRow(secId, rowId, rowMap, data) {
-    
-        await firebase.database().ref('users/notes/' + data.key).set(null)
-    
-        rowMap[`${secId}${rowId}`].props.closeRow();
-        var newData = [...this.state.listViewData];
-        newData.splice(rowId, 1)
-        this.setState({ listViewData: newData });
-    
-      }
-    
-      showInformation() {
-    
-      }
-    
-      render() {
-        return (
-          <Container >
-            <Header style={{backgroundColor: 'white'}}>
-              <Content>
-                <Item>
-                  <Input
-                    onChangeText={(newNote) => this.setState({ newNote })}
-                    placeholder="Add Note"
-                  />
-                  <Button onPress={() => this.addRow(this.state.newNote)}>
-                    <Icon name="add" />
-                  </Button>
-                </Item>
-              </Content>
-            </Header>
-    
-            <Content>
-              <List
-                enableEmptySections
-                dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-                renderRow={data =>
-                  <ListItem>
-                    <Text> {data.val().name}</Text>
-                  </ListItem>
-                }
-                renderLeftHiddenRow={data =>
-                  <Button full onPress={() => alert(data.val().name)} >
-                    <Icon name="information-circle" />
-                  </Button>
-                }
-                renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                  <Button full danger onPress={() => this.deleteRow(secId, rowId, rowMap, data)}>
-                    <Icon name="trash" />
-                  </Button>
-    
-                }
-    
-                leftOpenValue={-75}
-                rightOpenValue={-75}
-    
-              />
-    
-            </Content>
-          </Container>
-        );
-      }
    
+        this.state = {
+            loading: true,           
+            user: {},
+        }
+        this.handleDelete = this.handleDelete.bind(this)
+    }
+
+    componentDidMount() {
+        // ********** This will always be undefined the first time this component mounts. 
+        // However the Second time, props will already be loaded from the store **********
+        {
+            this.props.props ? this.setState({ user: this.props.props, loading: false }, function () {
+            }) : undefined
+        }
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        // ******* When this component mounts the first time the firebase actions aren't complete and there isn't any user info
+        // ******* When Firebase returns promise we will assign the database user to this.state.user
+        // ******* We have to render everything in this component from this.state.user to avoid async errors
+
+        this.setState({ user: nextProps.props, loading: false }, function () {
+        });
+    }
+
+    handleDelete(note, index) {
+
+      
+            this.setState({ loading: true }, function () {
+                this.props.deleteNoteRequest(this.state.user, note, index)
+                this.setState({ loading: false }, function () {
+        
+                })
+        
+             })
+       
+    }
+
+
+    render() {
+     
+        
+        return (
+            // ******* The first if, renders loading spinner if firebase promise isn't returned yet.
+            // ******* The second if, checks to make sure the user returned from firebase has vehicles.
+          
+            <ScrollView>
+
+                <Container>
+                    {this.state.loading ? <Spinner /> :
+                        <Container>
+                            {this.state.user.allNotes ?
+                                <ScrollView>
+                                    {this.props.props.allNotes.allNotesArray.map((ele, key) => {
+
+                                     
+                                        return (
+                                        
+                                            <List style={{ flex: 0 }} key={key}>
+                                         
+                                                <ListItem>
+                                               
+                                                    <Left>
+                                                   
+                                                        <Body>
+                                                           
+                                                            <Text note>{ele.noteTitle}</Text>
+                                                            
+                                                        </Body>
+                                                    </Left>
+                                                
+                                                       
+                                                        <Button transparent 
+                                                            title="Delete Note" 
+                                                            onPress={() => Alert.alert(
+                                                                'Delete Note',
+                                                                'Are you sure you want to delete this note from your history?',
+                                                                [
+
+                                                                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                                                                    {text: 'OK', onPress: () => this.handleDelete(ele, this.props.props.allNotes.allNotesArray.indexOf(ele))}
+
+
+                                                                ],
+                                                                { cancelable: false }
+                                                            )}
+                                                        >
+                                                            <Icon name="trash" />
+                                                               
+                                                            
+                                                       </Button>
+                                                       
+                                                   
+                                                </ListItem>
+                                              
+                                            </List>
+                                           
+                                                
+                                        )
+
+                                        
+                                    }) }
+                                </ScrollView>
+                                :
+                                <Container>
+                                    <Content style={{ padding: 50}}>
+                                    <Text style={{fontSize:20, textAlign: 'center', marginTop: 200}}>Add Note</Text>
+                                        <Button style={AddVehicleButton.addVehicleButton} transparent onPress={() => this.props.navigation.navigate('NoteScreen')} >
+                                            <Icon style={{ fontSize:100  }} type="FontAwesome" name='plus-circle' />
+                                        </Button>
+                                    
+                                    </Content>
+                                </Container>
+                            }
+                        </Container>}
+                </Container>
+            </ScrollView >
+        );
+    }
 }
+
 
 
 
