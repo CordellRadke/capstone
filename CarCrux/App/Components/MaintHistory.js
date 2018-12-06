@@ -67,7 +67,7 @@ export default class MaintHistory extends Component {
                                 <ScrollView>
                                     {this.props.props.allNotes.allNotesArray.map((ele, key) => {
 
-                                       console.log(this.props.props.allNotes.allNotesArray);
+                                     
                                         return (
                                         
                                             <List style={{ flex: 0 }} key={key}>
