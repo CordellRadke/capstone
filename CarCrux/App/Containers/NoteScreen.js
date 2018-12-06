@@ -11,7 +11,8 @@ import { Images } from '../Themes'
 
 import styles from './Styles/VehicleCreateScreenStyle'
 import NoteDatePicker from '../Components/noteDate';
-import NoteTitlePicker from '../Components/noteTitle'
+import NoteTitlePicker from '../Components/noteTitle';
+import NoteTextPicker from '../Components/noteText';
 
 
 
@@ -22,11 +23,13 @@ class NoteScreen extends Component {
             
             noteDate: '', 
             noteTitle: '', 
+            noteText: '',
             loading: false,
             
         }
         this.datePicked = this.datePicked.bind(this);
         this.titlePicked = this.titlePicked.bind(this);
+        this.textPicked = this.textPicked.bind(this);
         this.submitNoteInformation = this.submitNoteInformation.bind(this);
     }
 
@@ -42,7 +45,7 @@ class NoteScreen extends Component {
     // So we need to reset all choices after, just in case. 
 
     datePicked(date) {
-        this.setState({ noteDate: date, noteTitle: ''}, function () {
+        this.setState({ noteDate: date, noteTitle: '', noteText: ''}, function () {
             console.log(this.state, 'Updated Date')
         });
 
@@ -58,43 +61,22 @@ class NoteScreen extends Component {
     }
 
     // // Updates this containers/screens state from the static component user input
-    // // We allow the user to quickly click a stat on their vehicle to edit in case they mispressed. 
+    // // We allow the user to quickly click a stat on their note to edit in case they mispressed. 
     // // So we need to reset all choices after, just in case. 
-    // modelPicked(model) {
-    //     this.setState({ vehicleModel: model, vehicleTrim: '' }, function () {
-    //         console.log(this.state, 'Updated Model')
-    //     });
-    // }
+    textPicked(text) {
+        this.setState({ noteText: text}, function () {
+            console.log(this.state, 'Updated Text')
+        });
+    }
 
-    // // Updates this containers/screens state from the static component user input
-    // // We allow the user to quickly click a stat on their vehicle to edit in case they mispressed. 
-    // // So we need to reset all choices after, just in case. 
-    // trimPicked(trim) {
-    //     this.setState({ vehicleTrim: trim }, function () {
-    //         console.log(this.state, 'Updated Trim')
-    //     });
-    // }
-
-    // photoPicked(photo) {
-    //     // [...this.state.photoPool, source]
-    //     console.log(photo)
-    //     this.setState({ vehiclePhoto: [...this.state.vehiclePhoto, photo] }, function () {
-    //         console.log(this.state, 'Updated Photo')
-    //     });
-    // }
-
-    // specificPhotoDelete(photo) {
-    //     let filteredArray = this.state.vehiclePhoto.filter(ele => ele.uri !== photo.uri)
-    //     console.log(filteredArray)
-    //     this.setState({ vehiclePhoto: filteredArray })
-    // }
-
+   
     submitNoteInformation() {
 
         let noteDetail = 
             {
             noteDate: this.state.noteDate,
             noteTitle: this.state.noteTitle,
+            noteText: this.state.noteText,
 
             };
         
@@ -123,9 +105,9 @@ class NoteScreen extends Component {
     }
 
     render() {
-        // Here we dynamically render each option for vehicle values after they have chosen
-        // So first is YEAR > then we hide year and show MAKE > then we hide make and show MODEL, etc
-        // All based on component did mount's API calls from the respective component
+        // Here we dynamically render each option for note values after they have chosen
+        // So first is Date > then we hide year and show Title > then we hide make and show Text, etc.
+
         return (
             <View>
                 <ScrollView>
@@ -145,6 +127,7 @@ class NoteScreen extends Component {
                             <Text>Note Details:</Text>
                             <Text onPress={() => this.datePicked('')} >Date: {this.state.noteDate}</Text>
                             <Text onPress={() => this.titlePicked('')} >Title: {this.state.noteTitle}</Text>
+                            <Text onPress={() => this.textPicked('')} >Text: {this.state.noteText}</Text>
                          
                            
                         </View>
@@ -153,11 +136,11 @@ class NoteScreen extends Component {
 
                             {/* These next conditionals dynamically show based on completion of full vehicle information  */}
                             {!this.state.noteDate && <NoteDatePicker noteDate={this.datePicked} /> }
-                            {!!this.state.noteDate && !this.state.noteTitle &&<NoteTitlePicker noteTitle={this.titlePicked} homeState={this.state} /> }
-                            
+                            {!!this.state.noteDate && !this.state.noteTitle &&<NoteTitlePicker noteTitle={this.titlePicked} /> }
+                            {!!this.state.noteDate && !!this.state.noteTitle && !this.state.noteText &&<NoteTextPicker noteText={this.textPicked} homeState={this.state} /> }
 
 
-                            {this.state.noteDate !== '' && this.state.noteTitle !== '' &&<Button style={{backgroundColor: 'green'}}block onPress={this.submitNoteInformation}>
+                            {this.state.noteDate !== '' && this.state.noteTitle !== '' && this.state.noteText !=='' &&<Button style={{backgroundColor: 'green'}}block onPress={this.submitNoteInformation}>
                                <Text style={{fontSize: 20,color: 'white'}}>Save Note</Text>
                             </Button> }
 

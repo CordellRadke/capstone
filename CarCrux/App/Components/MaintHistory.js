@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
-import { Alert, Image, ScrollView, View, ListView } from 'react-native';
+import { Alert, Image, ScrollView, View, ListView, Modal, TouchableHighlight } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Icon, List, ListItem, Right, Left, Button, Thumbnail, Body} from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
+import NoteStyle from './Styles/NoteStyle';
 
 
 
@@ -12,7 +13,8 @@ export default class MaintHistory extends Component {
         super(props);
    
         this.state = {
-            loading: true,           
+            loading: true, 
+            modalVisible: false,   
             user: {},
         }
         this.handleDelete = this.handleDelete.bind(this)
@@ -51,6 +53,10 @@ export default class MaintHistory extends Component {
     }
 
 
+    setModalVisible(visible) {
+      this.setState({modalVisible: visible});
+    }
+
     render() {
      
         
@@ -78,25 +84,57 @@ export default class MaintHistory extends Component {
                                                    
                                                         <Body>
                                                            
+                                                            <Text note>{ele.noteDate}</Text>
                                                             <Text note>{ele.noteTitle}</Text>
+
                                                             
                                                         </Body>
                                                     </Left>
-                                                
-                                                       
+                                                    <Modal
+                                                        animationType="slide"
+                                                        transparent={false}
+                                                        visible={this.state.modalVisible}
+                                                        onRequestClose={() => {
+                                                          Alert.alert('Modal has been closed.');
+                                                        }}>
+                                                        <View style={{marginTop: 22}}>
+                                                          <View>
+                                                            <Text>Note Details:</Text>
+                                                            <Text note>{ele.noteDate}</Text>
+                                                            <Text note>{ele.noteTitle}</Text>
+                                                            <Text note>{ele.noteText}</Text>
+
+                                                            <TouchableHighlight
+                                                              onPress={() => {
+                                                                this.setModalVisible(!this.state.modalVisible);
+                                                              }}>
+                                                              <Text style={NoteStyle.backButton}>Back</Text>
+                                                            </TouchableHighlight>
+                                                          </View>
+                                                        </View>
+                                                      </Modal>
+
+                                                      <TouchableHighlight
+                                                        onPress={() => {
+                                                          this.setModalVisible(true);
+                                                        }}>
+                                                        <Text style={{marginRight: 55, color: '#595478'}}>VIEW</Text>
+                                                      </TouchableHighlight>
+                        
                                                         <Button transparent 
                                                             title="Delete Note" 
                                                             onPress={() => Alert.alert(
                                                                 'Delete Note',
                                                                 'Are you sure you want to delete this note from your history?',
+                                                              
                                                                 [
 
                                                                     {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                                                                    {text: 'OK', onPress: () => this.handleDelete(ele, this.props.props.allNotes.allNotesArray.indexOf(ele))}
+                                                                    {text: 'Delete', onPress: () => this.handleDelete(ele, this.props.props.allNotes.allNotesArray.indexOf(ele))}
 
 
                                                                 ],
-                                                                { cancelable: false }
+                                                                { cancelable: true }
                                                             )}
                                                         >
                                                             <Icon name="trash" />
