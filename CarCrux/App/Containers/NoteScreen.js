@@ -9,10 +9,11 @@ import firebase from 'firebase'
 import { userNoteCreateRequest, userVehiclePhotoUploadRequest } from '../Actions/note-actions';
 import { Images } from '../Themes'
 
-import styles from './Styles/VehicleCreateScreenStyle'
+import styles from './Styles/VehicleCreateScreenStyle';
 import NoteDatePicker from '../Components/noteDate';
 import NoteTitlePicker from '../Components/noteTitle';
 import NoteTextPicker from '../Components/noteText';
+import NoteMileagePicker from '../Components/noteMileage';
 
 
 
@@ -24,12 +25,14 @@ class NoteScreen extends Component {
             noteDate: '', 
             noteTitle: '', 
             noteText: '',
+            noteMileage: '',
             loading: false,
             
         }
         this.datePicked = this.datePicked.bind(this);
         this.titlePicked = this.titlePicked.bind(this);
         this.textPicked = this.textPicked.bind(this);
+        this.mileagePicked = this.mileagePicked.bind(this);
         this.submitNoteInformation = this.submitNoteInformation.bind(this);
     }
 
@@ -69,6 +72,15 @@ class NoteScreen extends Component {
         });
     }
 
+    // // Updates this containers/screens state from the static component user input
+    // // We allow the user to quickly click a stat on their note to edit in case they mispressed. 
+    // // So we need to reset all choices after, just in case. 
+    mileagePicked(mileage) {
+        this.setState({ noteMileage: mileage}, function () {
+            console.log(this.state, 'Updated Mileage')
+        });
+    }
+
    
     submitNoteInformation() {
 
@@ -77,6 +89,7 @@ class NoteScreen extends Component {
             noteDate: this.state.noteDate,
             noteTitle: this.state.noteTitle,
             noteText: this.state.noteText,
+            noteMileage: this.state.noteMileage,
 
             };
         
@@ -126,6 +139,7 @@ class NoteScreen extends Component {
                         <View>
                             <Text>Note Details:</Text>
                             <Text onPress={() => this.datePicked('')} >Date: {this.state.noteDate}</Text>
+                            <Text onPress={() => this.mileagePicked('')} >Today's Mileage: {this.state.noteMileage}</Text>
                             <Text onPress={() => this.titlePicked('')} >Title: {this.state.noteTitle}</Text>
                             <Text onPress={() => this.textPicked('')} >Text: {this.state.noteText}</Text>
                          
@@ -133,15 +147,16 @@ class NoteScreen extends Component {
                         </View>
                         <Content>
 
-
+ 
                             {/* These next conditionals dynamically show based on completion of full vehicle information  */}
                             {!this.state.noteDate && <NoteDatePicker noteDate={this.datePicked} /> }
-                            {!!this.state.noteDate && !this.state.noteTitle &&<NoteTitlePicker noteTitle={this.titlePicked} /> }
-                            {!!this.state.noteDate && !!this.state.noteTitle && !this.state.noteText &&<NoteTextPicker noteText={this.textPicked} homeState={this.state} /> }
+                            {!!this.state.noteDate && !this.state.noteMileage &&<NoteMileagePicker noteMileage={this.mileagePicked} /> }
+                            {!this.state.noteTitle && !!this.state.noteMileage &&<NoteTitlePicker noteTitle={this.titlePicked} /> }
+                            {!!this.state.noteTitle && !!this.state.noteMileage && !this.state.noteText &&<NoteTextPicker noteText={this.textPicked} homeState={this.state} /> }
 
 
-                            {this.state.noteDate !== '' && this.state.noteTitle !== '' && this.state.noteText !=='' &&<Button style={{backgroundColor: 'green'}}block onPress={this.submitNoteInformation}>
-                               <Text style={{fontSize: 20,color: 'white'}}>Save Note</Text>
+                            {this.state.noteDate !== '' && this.state.noteMileage !== '' && this.state.noteTitle !== '' && this.state.noteText !=='' &&<Button style={{backgroundColor: 'green'}}block onPress={this.submitNoteInformation}>
+                              <Text style={{fontSize: 20,color: 'white'}}>Save Note</Text> 
                             </Button> }
 
                             {/*this.state.loading && <Spinner color='blue' /> */}

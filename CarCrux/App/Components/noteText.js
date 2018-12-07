@@ -38,9 +38,10 @@ export default class NoteTextPicker extends Component {
 
         <ScrollView >
             <View style={{ flex: 1, marginTop: 20 }}>
-               
+           
                     <ScrollView >
                         <TextInput
+                            placeholder="Here you can add just about anything from part prices to what you got fixed on your vehicle today"
                             style={{borderTopWidth: 0}}
                             multiline = {true}
                             numberOfLines = {10}
