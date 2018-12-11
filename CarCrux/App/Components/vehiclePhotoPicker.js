@@ -15,7 +15,7 @@ import { Button, Text, Icon, CheckBox, Container, Content, Body, Radio, Right } 
 import ImagePicker from 'react-native-image-picker'
 import Spinner from '../Components/Spinner'
 
-import RNFetchBlob from 'react-native-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob'
 
 
 

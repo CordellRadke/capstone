@@ -3,6 +3,7 @@ package com.CarCrux;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.imagepicker.ImagePickerPackage;

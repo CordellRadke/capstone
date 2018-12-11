@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import { userSet, userCreate, userUpdate, loginRequest } from './auth-actions';
 import { Platform } from 'react-native'
-import RNFetchBlob from 'react-native-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob'
 
 
 
