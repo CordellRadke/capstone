@@ -14,6 +14,7 @@ import {
 import { Button, Text, Icon, CheckBox, Container, Content, Body, Radio, Right } from "native-base";
 import ImagePicker from 'react-native-image-picker'
 import Spinner from '../Components/Spinner'
+import Styles from './Styles/InputStyle'
 
 import RNFetchBlob from 'rn-fetch-blob'
 
@@ -87,10 +88,10 @@ export default class VehiclePhotoPicker extends React.Component {
                     {this.state.wantsPhotoUpload ? <Spinner /> : undefined}
                     <Content>
 
-                        <Text>{this.props.buttonText}</Text>
+                        <Text style={Styles.specsInput} >{this.props.buttonText}</Text>
                         <Button transparent onPress={this.choosePhoto} >
-                            <Icon name="images" />
-                            {<Text>Yes!</Text>}
+                            <Icon style={Styles.iconStyle} name="images" />
+                            {<Text>Add Vehicle Photo</Text>}
                         </Button>
                     </Content>
 

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Platform, ScrollView, View, Picker } from "react-native";
 import Spinner from '../Components/Spinner'
 import { Button, Text } from "native-base";
-// const Item = Picker.Item;
+import Styles from './Styles/InputStyle'
 import SmartPicker from 'react-native-smart-picker'
 import axios from 'axios'
+import styles from "react-native-smart-picker/src/styles";
 
 export default class VehicleMakePicker extends Component {
     constructor(props) {
@@ -61,12 +62,15 @@ export default class VehicleMakePicker extends Component {
             <ScrollView >
                 <View style={{ flex: 1, marginTop: 20 }}>
                     {this.state.makes.length > 1 ?
-                        <ScrollView >
+                        <ScrollView>
                             <SmartPicker
-
+                               
                                 expanded={this.state.expanded}
                                 selectedValue={this.state.selectedMake}
                                 label='Select Make'
+                                androidPickerStyle={Styles.pickerStyle}
+                                androidBoxStyle={Styles.pickerTitle}
+                                
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {

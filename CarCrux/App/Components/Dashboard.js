@@ -4,6 +4,7 @@ import { Image, ScrollView, View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Left, Button, Thumbnail, Body } from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
+import Styles from './Styles/InputStyle'
 const backgroundImage = require("../Images/Dash-Icon.png");
 
 
@@ -95,8 +96,8 @@ export default class Dashboard extends Component {
                                                 <CardItem>
                                                     <Right>
                                                         <Button transparent onPress={() => this.props.navigation.navigate('YouTubeScreen', { vehicle: ele })} textStyle={{ color: '#87838B' }}>
-                                                            <Icon name="build" />
-                                                            <Text>Fix it Now!</Text>
+                                                            <Icon style={Styles.iconWrenchStyle} name="build" />
+                                                            <Text style={Styles.fixItButton}>Fix it Now!</Text>
                                                         </Button>
                                                     </Right>
 

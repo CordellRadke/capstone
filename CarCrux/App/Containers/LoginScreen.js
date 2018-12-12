@@ -79,7 +79,7 @@ class LoginScreen extends Component {
               </Button>
             </Left>
             <Body>
-              <Title><Text></Text></Title>
+              <Title><Text>Login</Text></Title>
             </Body>
           </Header>
           <Container style={styles.Container}>

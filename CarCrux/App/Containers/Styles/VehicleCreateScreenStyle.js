@@ -23,8 +23,19 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
     },
-    textInput: {
-        backgroundColor: 'rgba(255, 255, 255, .75)',
+    specsHeader:{
+
+        color: 'black',
+        fontSize: 20,
+        padding: 20,
+
+
+    },
+    specsInput: {
+
+        fontSize: 20,
+        padding: 10,
+      
     },
     headerTitle:{
         shadowOpacity: 0, 

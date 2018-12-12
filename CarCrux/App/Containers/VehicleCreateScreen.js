@@ -127,7 +127,7 @@ class VehicleCreateScreen extends Component {
 
 
         Toast.show({
-            text: 'We stored your ' + this.state.vehicleYear + ' ' + this.state.vehicleModel + 'in your Garage!',
+            text: 'We stored your ' + this.state.vehicleYear + ' ' + this.state.vehicleModel + ' in your Garage!',
             position: 'bottom',
             buttonText: 'Sounds Good',
             duration: 3000,
@@ -165,11 +165,11 @@ class VehicleCreateScreen extends Component {
                     <Container style={styles.Container}>
 
                         <View>
-                            <Text>Vehicle Stats:</Text>
-                            <Text onPress={() => this.yearPicked('')} >Year: {this.state.vehicleYear}</Text>
-                            <Text onPress={() => this.makePicked('')}>Make: {this.state.vehicleMake}</Text>
-                            <Text onPress={() => this.modelPicked('')}>Model: {this.state.vehicleModel}</Text>
-                            <Text onPress={() => this.trimPicked('')}>Trim: {this.state.vehicleTrim.name}</Text>
+                            <Text style={styles.specsHeader}>Vehicle Specs:</Text>
+                            <Text style={styles.specsInput} onPress={() => this.yearPicked('')} >Year: {this.state.vehicleYear}</Text>
+                            <Text style={styles.specsInput} onPress={() => this.makePicked('')}>Make: {this.state.vehicleMake}</Text>
+                            <Text style={styles.specsInput} onPress={() => this.modelPicked('')}>Model: {this.state.vehicleModel}</Text>
+                            <Text style={styles.specsInput} onPress={() => this.trimPicked('')}>Trim: {this.state.vehicleTrim.name}</Text>
                             {/* Here we display all photos they uploaded */}
                             {/* TODO if they click a photo it will remove it  */}
                             {this.state.vehiclePhoto.length > 0 && this.state.vehiclePhoto.map((ele, key) => {
