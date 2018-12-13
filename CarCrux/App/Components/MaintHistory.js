@@ -66,7 +66,7 @@ export default class MaintHistory extends Component {
             // ******* The first if, renders loading spinner if firebase promise isn't returned yet.
             // ******* The second if, checks to make sure the user returned from firebase has vehicles.
           
-            <ScrollView>
+            <View style={{flex: 1}}>
 
                 <Container>
                     {this.state.loading ? <Spinner /> :
@@ -172,7 +172,7 @@ export default class MaintHistory extends Component {
                             }
                         </Container>}
                 </Container>
-            </ScrollView >
+            </View >
         );
     }
 }
