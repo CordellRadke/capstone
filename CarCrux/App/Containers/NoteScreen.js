@@ -10,6 +10,7 @@ import { userNoteCreateRequest, userVehiclePhotoUploadRequest } from '../Actions
 import { Images } from '../Themes'
 
 import styles from './Styles/VehicleCreateScreenStyle';
+import Styles from './Styles/NoteScreenStyle';
 import NoteDatePicker from '../Components/noteDate';
 import NoteTitlePicker from '../Components/noteTitle';
 import NoteTextPicker from '../Components/noteText';
@@ -137,11 +138,11 @@ class NoteScreen extends Component {
                     <Container style={styles.Container}>
 
                         <View>
-                            <Text>Note Details:</Text>
-                            <Text onPress={() => this.datePicked('')} >Date: {this.state.noteDate}</Text>
-                            <Text onPress={() => this.mileagePicked('')} >Today's Mileage: {this.state.noteMileage}</Text>
-                            <Text onPress={() => this.titlePicked('')} >Title: {this.state.noteTitle}</Text>
-                            <Text onPress={() => this.textPicked('')} >Text: {this.state.noteText}</Text>
+                            <Text style={Styles.detailsHeader}>Note Details:</Text>
+                            <Text style={Styles.detailsInput} onPress={() => this.datePicked('')} >Date: {this.state.noteDate}</Text>
+                            <Text style={Styles.detailsInput} onPress={() => this.mileagePicked('')} >Today's Mileage: {this.state.noteMileage}</Text>
+                            <Text style={Styles.detailsInput} onPress={() => this.titlePicked('')} >Title: {this.state.noteTitle}</Text>
+                            <Text style={Styles.detailsInput} onPress={() => this.textPicked('')} >Text: {this.state.noteText}</Text>
                          
                            
                         </View>
