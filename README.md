@@ -89,6 +89,7 @@ searchYoutube() {
      * Run `cd carcrux`
      * Run `npm start`
      * Run [Android Studio Emulator](https://developer.android.com/studio/run/emulator)
+
 * Open [VSCODE](https://code.visualstudio.com/) or a code editor of your choice
      * Open VSCODE or your code editor's terminal window
      * Run `cd carcrux`
