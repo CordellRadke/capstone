@@ -5,11 +5,13 @@ import { Container, Header, Content, Item, Left, Body, Right, Button, Icon, Titl
 import Spinner from '../Components/Spinner'
 import firebase from 'firebase'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import SideBar from '../Components/SideBar';
 import HomeOverview from '../Components/HomeOverview'
 import MaintHistory from '../Components/MaintHistory'
 import Dashboard from '../Components/Dashboard'
 import { deleteVehicleRequest } from '../Actions/vehicle-actions'
 import { deleteNoteRequest } from '../Actions/note-actions'
+import App from './App'
 
 
 
@@ -22,7 +24,7 @@ class HomeScreen extends Component {
     this.state = {
       loading: true, dashActive: false, historyActive: false, videoActive: false, garageActive: false, headerTitle: 'Garage', user: {}
     }
-    this.openDrawer = this.openDrawer.bind(this);
+   
   }
 
   componentDidUpdate() {
@@ -39,14 +41,7 @@ class HomeScreen extends Component {
 
   }
 
-
-
-  closeDrawer = () => {
-    this.drawer._root.close()
-  };
-  openDrawer = () => {
-    this.drawer._root.open()
-  };
+  
 
   setMenuRef = ref => {
     this.menu = ref;
@@ -66,6 +61,8 @@ class HomeScreen extends Component {
   showMenu = () => {
     this.menu.show();
   };
+
+
 
   // *************** These the the three bottons on the bottom nav.
 
@@ -120,33 +117,38 @@ class HomeScreen extends Component {
     return (
       // ******** This is the Header and Tab Navigation ********
       
-
-
-
-      <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
+      
      <Header style={{backgroundColor: '#595478'}}>
-          
+     <Button transparent onPress={() => this.onLogoutPress(this.props.navigation)}><Text style={{color:'white'}}>Logout</Text></Button>
             <Title style={{ fontSize: 10 }} >Welcome Back {this.props.user.account.username}</Title>
+        
             <Body>
-              <Text style={{color: 'white', fontSize: 20 , marginLeft: 60}}>{this.state.headerTitle}</Text>
+           
+              <Text style={{color: 'white', fontSize: 20 , marginLeft: 10}}>{this.state.headerTitle}</Text>
             </Body>
             <Right>
               <Menu
                 ref={this.setMenuRef}
                 style={{ alignSelf: 'flex-end' }}
                 button={
+
                 <Button transparent onPress={this.showMenu}>
-                  <Icon name='settings' />
+                  <Icon name='add' />
                 </Button>
+                
                 } >
                 {<MenuItem onPress={() => this.onVehicleCreatePress(this.props.navigation)}>Add New Vehicle</MenuItem>}
-                <MenuItem onPress={() => this.props.navigation.navigate('NoteScreen')} >Add New Note</MenuItem>
                 <MenuDivider />
-                <MenuItem onPress={() => this.onLogoutPress(this.props.navigation)}>Logout</MenuItem>
+                <MenuItem onPress={() => this.props.navigation.navigate('NoteScreen')} >Add New Note</MenuItem>
+                
+                
               </Menu>
             </Right>
+            
+            
           </Header>
-
+        
           {/** ALL TAB NAVIGATION */}
  
           {/* Show Garage from tab at bottom.  */}
@@ -157,6 +159,7 @@ class HomeScreen extends Component {
           {this.state.dashActive && <Dashboard navigation={this.props.navigation} props={this.props.user} /> }
           
 
+       
         {/* FOOTER */}
        
         <Footer>
@@ -181,6 +184,7 @@ class HomeScreen extends Component {
                   
         
       </View>
+   
     )
   }
 }

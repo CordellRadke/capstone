@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
 import { Alert, Image, ScrollView, View, ListView, Modal, TouchableHighlight } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Text, Icon, List, ListItem, Right, Left, Button, Thumbnail, Body} from 'native-base';
+import { Container, Header, Content, Card, CardItem, Text, Title, Icon, List, ListItem, Right, Left, Button, Thumbnail, Body} from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
 import NoteStyle from './Styles/NoteStyle';
@@ -85,10 +85,9 @@ export default class MaintHistory extends Component {
                                                     <Left>
                                                    
                                                         <Body>
-                                                           
+                                                            
+                                                            <Text note style={{color: 'black', fontWeight: 'bold'}}>{ele.noteTitle}</Text>
                                                             <Text note>{ele.noteDate}</Text>
-                                                            <Text note>{ele.noteTitle}</Text>
-
                                                             
                                                         </Body>
                                                     </Left>
@@ -100,8 +99,13 @@ export default class MaintHistory extends Component {
                                                           Alert.alert('Modal has been closed.');
                                                         }}>
                                                         <View style={{marginTop: 22}}>
+                                                        <Header style={NoteStyle.backButton} >
+                                                            
+                                                            <Body>
+                                                               <Text style={HeaderStyle.headTitle}>NOTE DETAILS</Text>
+                                                            </Body>
+                                                        </Header>
                                                           <View>
-                                                            <Text style={HeaderStyle.head}>Note Details:</Text>
                                                             <Text style={InputStyle.notesDate} note>{ele.noteDate}</Text>
                                                             <Text style={InputStyle.notesTitle} note>{ele.noteTitle}</Text>
                                                             <Text style={InputStyle.notesText} note>{ele.noteText}</Text>

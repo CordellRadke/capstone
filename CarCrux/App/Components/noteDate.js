@@ -11,7 +11,7 @@ export default class NoteDatePicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDate: "2018-01-01",
+            selectedDate: "2019-01-01",
             dates:[],
           
             

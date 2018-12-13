@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Platform, ScrollView, View, Picker } from "react-native";
 import Spinner from '../Components/Spinner'
 import { Button, Text } from "native-base";
-// const Item = Picker.Item;
+import Styles from './Styles/InputStyle'
 import SmartPicker from 'react-native-smart-picker'
 
 export default class VehicleYearPicker extends Component {
@@ -50,6 +50,8 @@ export default class VehicleYearPicker extends Component {
                                 expanded={this.state.expanded}
                                 selectedValue={this.state.selected1}
                                 label='Vehicle Year'
+                                androidPickerStyle={Styles.pickerStyle}
+                                androidBoxStyle={Styles.pickerTitle}
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {

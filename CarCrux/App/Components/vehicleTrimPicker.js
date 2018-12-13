@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Platform, ScrollView, View, Picker } from "react-native";
 import Spinner from '../Components/Spinner'
 import { Button, Text } from "native-base";
+import Styles from './Styles/InputStyle'
 import axios from 'axios'
 import SmartPicker from 'react-native-smart-picker'
 
@@ -82,6 +83,8 @@ export default class vehicleTrimPicker extends Component {
                                 expanded={this.state.expanded}
                                 selectedValue={this.state.selectedTrim}
                                 label='Select Trim'
+                                androidPickerStyle={Styles.pickerStyle}
+                                androidBoxStyle={Styles.pickerTitle}
                                 onValueChange={this.handleChange.bind(this)}
                             >
                                 {
