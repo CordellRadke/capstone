@@ -92,7 +92,7 @@ export default class HomeOverview extends Component {
                                                                 [
 
                                                                     {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                                                                    {text: 'OK', onPress: () => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))}
+                                                                    {text: 'OK', onPress:() => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))}
 
 
                                                                 ],
