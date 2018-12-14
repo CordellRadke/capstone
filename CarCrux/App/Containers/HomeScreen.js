@@ -9,6 +9,7 @@ import HomeOverview from '../Components/HomeOverview'
 import MaintHistory from '../Components/MaintHistory'
 import Dashboard from '../Components/Dashboard'
 import { deleteVehicleRequest } from '../Actions/vehicle-actions'
+import { deleteNoteRequest } from '../Actions/note-actions'
 
 
 
@@ -139,7 +140,7 @@ class HomeScreen extends Component {
                 </Button>
                 } >
                 {<MenuItem onPress={() => this.onVehicleCreatePress(this.props.navigation)}>Add New Vehicle</MenuItem>}
-                <MenuItem onPress={() => this.props.navigation.navigate('SettingsScreen')} >Settings</MenuItem>
+                <MenuItem onPress={() => this.props.navigation.navigate('NoteScreen')} >Add New Note</MenuItem>
                 <MenuDivider />
                 <MenuItem onPress={() => this.onLogoutPress(this.props.navigation)}>Logout</MenuItem>
               </Menu>
@@ -200,7 +201,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loginRequest: (user) => dispatch(loginRequest(user)),
     deleteVehicleRequest: (user, vehicle, index) => dispatch(deleteVehicleRequest(user, vehicle, index)),
-    
+    deleteNoteRequest: (user, note, index) => dispatch(deleteNoteRequest(user, note, index))
   }
 }
 
