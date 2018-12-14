@@ -12,6 +12,8 @@ export default StyleSheet.create({
         color: 'white'
         
 
-    }
+    },
+  
+
   
 })

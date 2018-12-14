@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
-import { Image, ScrollView, View } from 'react-native';
+import { Image, ScrollView, View, Modal, TouchableHighlight } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Icon, Right, Left, Button, Thumbnail, Body } from 'native-base';
 import { Images } from '../Themes'
 import AddVehicleButton from './Styles/AddVehicleButton';
 import Styles from './Styles/InputStyle'
 const backgroundImage = require("../Images/Dash-Icon.png");
-
+import NoteStyle from './Styles/NoteStyle';
+import InputStyle from './Styles/InputStyle';
+import HeaderStyle from './Styles/HeaderStyle';
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
+            loading: true,  
             user: {},
         }
         this.handleDelete = this.handleDelete.bind(this)
@@ -47,6 +49,7 @@ export default class Dashboard extends Component {
         })
     }
 
+
     render() {
 
         return (
@@ -79,7 +82,8 @@ export default class Dashboard extends Component {
                                                 <CardItem cardBody>
                                                     <Image source={dynamicAvatar} style={{ height: 200, width: null, flex: 1 }} />
                                                 </CardItem>
-
+            
+                                                      
                                                 <CardItem>
                                                     <Body>
                                                         {/* //I have no idea why transmission is white/why this works.. but it does... */}
@@ -90,10 +94,18 @@ export default class Dashboard extends Component {
                                                         <Text>
                                                             {`Horsepower: ` + ele.model_engine_power_hp}
                                                         </Text>
+                                                        <Text>Country Make: <Text style={InputStyle.vehicleSpecs} note>{ele.make_country}</Text></Text>
+                                                            <Text>Make: <Text style={InputStyle.vehicleSpecs} note>{ele.make_display}</Text></Text>
+                                                            <Text>Body: <Text style={InputStyle.vehicleSpecs} note>{ele.model_body}</Text></Text>
+                                                            <Text>Drive: <Text style={InputStyle.vehicleSpecs} note>{ele.model_drive}</Text></Text>
+                                                            <Text>Engine Cylinder: <Text style={InputStyle.vehicleSpecs} note>{ele.model_engine_cyl}</Text></Text>
+                                                            <Text>Engine Liter(s): <Text style={InputStyle.vehicleSpecs} note>{ele.model_engine_l}</Text></Text>
 
                                                     </Body>
                                                 </CardItem>
                                                 <CardItem>
+
+                                                   
                                                     <Right>
                                                         <Button transparent onPress={() => this.props.navigation.navigate('YouTubeScreen', { vehicle: ele })} textStyle={{ color: '#87838B' }}>
                                                             <Icon style={Styles.iconWrenchStyle} name="build" />
