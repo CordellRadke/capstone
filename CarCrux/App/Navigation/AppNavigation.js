@@ -8,9 +8,10 @@ import SettingsScreen from '../Containers/SettingsScreen'
 import VehicleCreateScreen from '../Containers/VehicleCreateScreen'
 import YouTubeScreen from '../Containers/YouTubeScreen'
 import NoteScreen from '../Containers/NoteScreen'
-
+import NoteDetailsScreen from '../Containers/NoteDetailsScreen'
 
 import styles from './Styles/NavigationStyles'
+
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
@@ -21,7 +22,8 @@ const PrimaryNav = StackNavigator({
   SettingsScreen: { screen: SettingsScreen },
   VehicleCreateScreen: { screen: VehicleCreateScreen },
   YouTubeScreen: { screen: YouTubeScreen },
-  NoteScreen: { screen: NoteScreen}
+  NoteScreen: { screen: NoteScreen},
+  NoteDetailsScreen: { screen: NoteDetailsScreen}
 
 
 }, {

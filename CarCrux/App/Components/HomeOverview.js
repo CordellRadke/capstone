@@ -56,7 +56,7 @@ export default class HomeOverview extends Component {
             // ******* The first if, renders loading spinner if firebase promise isn't returned yet.
             // ******* The second if, checks to make sure the user returned from firebase has vehicles.
             
-            <ScrollView>
+            <View style={{flex: 1}}>
 
                 <Container>
                     {this.state.loading ? <Spinner /> :
@@ -92,7 +92,7 @@ export default class HomeOverview extends Component {
                                                                 [
 
                                                                     {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                                                                    {text: 'OK', onPress: () => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))}
+                                                                    {text: 'OK', onPress:() => this.handleDelete(ele, this.props.props.allVehicles.allVehiclesArray.indexOf(ele))}
 
 
                                                                 ],
@@ -127,7 +127,7 @@ export default class HomeOverview extends Component {
                             }
                         </Container>}
                 </Container>
-            </ScrollView >
+            </View >
         );
     }
 }
